@@ -8,7 +8,7 @@ export const initialState = {
   error: null
 }
 
-export const authSlice = createSlice({
+export const index = createSlice({
   name: 'auth',
   initialState,
   reducers: {
@@ -25,6 +25,8 @@ export const authSlice = createSlice({
     setCurrentUser: (state, action) => {
       state.currentUser = action.payload.currentUser
       state.isAuth = true
+      state.isError = false
+      state.error = null
     },
 
     logoutSuccess: (state) => {
@@ -35,7 +37,7 @@ export const authSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const {setIsLoading, setError, setCurrentUser, logoutSuccess} = authSlice.actions
+export const {setIsLoading, setError, setCurrentUser, logoutSuccess} = index.actions
 
 
-export default authSlice.reducer
+export default index.reducer
