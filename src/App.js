@@ -32,8 +32,8 @@ function App() {
         <Route exact path='/catalogue/searchProducts/products/:id' element={<ProductsDetails/>}/>
         <Route exact path='/create/' element={<Create/>}/>
         <Route exact path='/card' element={<RecipeReviewCard/>}/>
-
         <Route element={<NotFoundPage/>}/>
+
       </Routes>
     </BrowserRouter>
   )

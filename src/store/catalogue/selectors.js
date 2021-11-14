@@ -1,19 +1,20 @@
-import {createSelector} from '@reduxjs/toolkit'
-import {initialState} from '.'
+import { createSelector } from "@reduxjs/toolkit";
+import { initialState } from ".";
 
 
-const selectDomain = (state) => state.catalogue || initialState
+const selectDomain= (state)=> state.catalogue || initialState
 
 export const selectProducts = createSelector(
-  [selectDomain],
-  catalogueState => catalogueState.products
+    [selectDomain],
+    catalogueState=>catalogueState.products
 )
 export const selectError = createSelector(
-  [selectDomain],
-  catalogueState => catalogueState.isError
+
+    [selectDomain],
+    catalogueState=>catalogueState.isError
 )
 
-export const selectIsPending = createSelector(
-  [selectDomain],
-  catalogueState => catalogueState.isPending
+export const selectIsPending=createSelector(
+    [selectDomain],
+    catalogueState=>catalogueState.isPending
 )

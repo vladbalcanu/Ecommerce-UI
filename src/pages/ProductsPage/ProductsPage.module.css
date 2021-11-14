@@ -11,6 +11,10 @@
 
 .navbar h1{
   color:blueviolet;
+<<<<<<< HEAD
+=======
+
+>>>>>>> b7db1ca... Feature:catalogue DAL , store UI
 }
 
 .navbar .links {
@@ -22,31 +26,50 @@
   text-decoration: none;
   padding: 6px;
 }
+<<<<<<< HEAD
 .navbar a:hover{
 color: #f1356d;
 }
 
+=======
+
+.navbar a:hover{
+color: #f1356d;
+
+}
+>>>>>>> b7db1ca... Feature:catalogue DAL , store UI
 .homeTitle{
   padding: 10px 16px;
   border-bottom: 1px solid #fafafa;
   box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
   background-color: burlywood;
 }
+<<<<<<< HEAD
 .productList{
+=======
+.content {
+>>>>>>> b7db1ca... Feature:catalogue DAL , store UI
   max-width: 1200px;
   max-height: 300px;
   margin: 40px auto;
   padding: 20px;
 }
+<<<<<<< HEAD
 .productList .links{
   text-decoration: none;
 }
 .productPreview {
   padding: 5px 16px;
+=======
+
+.product-preview {
+  padding: 10px 16px;
+>>>>>>> b7db1ca... Feature:catalogue DAL , store UI
   margin: 20px 0;
   border-bottom: 1px solid #fafafa;
   max-height: 500px;
 }
+<<<<<<< HEAD
 @keyframes example {
   0%   {background-color: rgb(255, 255, 255);}
   2%  {background-color: rgb(39, 122, 190);}
@@ -118,6 +141,98 @@ color: #f1356d;
 .productPreview a{
   text-decoration: none;
 }
+=======
+.product-preview:hover {
+
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  padding: 30px 40px;
+  
+}
+.product-preview h2{
+  border-top: 100px;
+  font-size:25px;
+}
+.product-preview h3{
+  border-top: 50px;
+}
+
+.product-preview:hover h2{
+font-size: 40px;
+}
+
+.ProductPhoto{
+  margin-left: 650px;
+  margin-bottom: 400px;
+  height: 300px;
+  width: 400px;
+}
+.product-preview h2{
+font-size:30px;
+color: #f1356d;
+margin-bottom:8px;
+}
+.product-preview button{
+    visibility: collapse;
+}
+.product-preview:hover button{
+    visibility: visible;
+}
+
+.product-preview a{
+  text-decoration: none;
+}
+.product-details h2{
+  font-size: 30px;
+  color: #f1356d;
+  margin-bottom: 10px;
+}
+
+.product-details div{
+  margin:20px 0;
+}
+
+.product-details button{
+background-color: #f1356d;
+color: #fff;
+border: 0;
+padding: 8px;
+border-radius: 8px;
+cursor: pointer;
+}
+
+.create{
+  max-width: 400px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.create label {
+  text-align: left;
+  display:block;
+}
+.create h2{
+  font-size:20px;
+  color:#f1356d;
+  margin-bottom: 30px;
+}
+.create input, .create textarea, .create select{
+width: 100%;
+padding: 6px 10px;
+margin: 10px 0;
+border: 1px solid #ddd;
+box-sizing: border-box;
+display: block;
+
+}
+.create button{
+  background: #f1356d;
+  color: #fff;
+  border:0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+>>>>>>> b7db1ca... Feature:catalogue DAL , store UI
 
 .searchBar{
   padding-left: 180px;
@@ -128,6 +243,10 @@ color: #f1356d;
   width:300px ;
 }
 .searchBar button{
+<<<<<<< HEAD
+=======
+
+>>>>>>> b7db1ca... Feature:catalogue DAL , store UI
   background: #f1356d;
   color: #fff;
   border:0;
@@ -135,6 +254,7 @@ color: #f1356d;
   border-radius: 8px;
   cursor: pointer;
 }
+<<<<<<< HEAD
 .searchBar select{
   
   margin-left: 15px;
@@ -147,4 +267,23 @@ color: #f1356d;
 }
 .linkStyle{
   text-decoration: none;
+=======
+
+.product-details h2{
+  text-align: center;
+  font-size: 30px;
+  color: #f1356d;
+}
+
+.singleProductPhoto{
+  width: 820px;
+  height: 600px;
+  padding-left: 290px;
+}
+.product-details p{
+  font-size: 24px;
+}
+.singleProductDescription{
+  font-size: 24px;
+>>>>>>> b7db1ca... Feature:catalogue DAL , store UI
 }
