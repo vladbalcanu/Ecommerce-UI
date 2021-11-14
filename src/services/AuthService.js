@@ -18,6 +18,7 @@ export default class AuthService {
   }
 
   static async me() {
-    return api.client('/auth/me').then(({data}) => data)
+    const {data} = await api.client('/auth/me')
+    return data
   }
 }

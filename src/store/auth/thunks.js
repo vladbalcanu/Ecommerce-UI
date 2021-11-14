@@ -8,7 +8,7 @@ export const login = ({email, password}) => async (dispatch) => {
     await AuthService.login({email, password})
     await dispatch(getCurrentUser())
   } catch (error) {
-    dispatch(setError({error: error.response.data}))
+    dispatch(setError({error: error?.response?.data}))
   } finally {
     dispatch(setIsLoading(false))
   }
@@ -21,7 +21,7 @@ export const getCurrentUser = () => async (dispatch) => {
     const currentUser = await AuthService.me()
     dispatch(setCurrentUser({currentUser}))
   } catch (error) {
-    dispatch(setError({error: error.response.data}))
+    dispatch(setError({error: error?.response?.data}))
   } finally {
     dispatch(setIsLoading(false))
   }
@@ -34,7 +34,7 @@ export const logout = () => async (dispatch) => {
     await AuthService.logout()
     dispatch(logoutSuccess())
   } catch (error) {
-    dispatch(setError({error: error.response.data}))
+    dispatch(setError({error: error?.response?.data}))
   } finally {
     dispatch(setIsLoading(false))
   }

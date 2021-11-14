@@ -39,5 +39,4 @@ export const index = createSlice({
 // Action creators are generated for each case reducer function
 export const {setIsLoading, setError, setCurrentUser, logoutSuccess} = index.actions
 
-
 export default index.reducer
