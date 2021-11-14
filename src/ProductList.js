@@ -13,7 +13,6 @@ const ProductList = ({products,title}) => {
 
     function handleSubmit(event){
         event.preventDefault();
-        console.log("sa te fut");
     }
 
     return (  
@@ -37,14 +36,21 @@ const ProductList = ({products,title}) => {
                 <button type="submit">Search</button>
                 </form>
             </div>
-            <h2>{title}</h2>
+            <div className="categorySearch">
+                
+
+            </div>
+
+
             { 
-                products.filter(item => text === "" || item.Name.includes(text)).map(item =>
+                products.filter(item => text === "" || item.title.includes(text)).map(item =>
                     <div className="product-preview">
                         <Link to={`/products/${item.id}`}>
-                        <h>Id: { item.id }</h>
-                        <h2>Name: { item.Name }</h2>
-                        <h3>Producer: { item.Producer }</h3>
+                        <h2>Name: { item.title }</h2>
+                        <h3>Producer: { item.producer }</h3>
+                        <h4>Price: {item.price}</h4>
+                        <img className="ProductPhoto" src={item.image}>
+                            </img>
                         </Link>
                     </div>
                 )

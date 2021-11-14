@@ -19,10 +19,10 @@ function App() {
         <Route exact path="/">
           <Home></Home>
         </Route>
-        <Route path="/create">
+        <Route exact path="/create">
           <Create></Create>
         </Route>
-        <Route path="/products/:id">
+        <Route exact path="/products/:id">
           <ProductsDetails></ProductsDetails>
         </Route>
         <Route path="*">

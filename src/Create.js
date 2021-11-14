@@ -2,18 +2,26 @@ import { useState } from "react";
 import {useHistory } from "react-router-dom";
 
 const Create = () => {
-    const [Name,setName]=useState('');
-    const [Description,setDescription]=useState('');
-    const [Producer,setProducer]=useState('andrei');
+    const [title,setTitle]=useState('');
+    const [description,setDescription]=useState('');
+    const [producer,setProducer]=useState('Benq');
+    const [price,setPrice]=useState('');
+    const [product_code,setProductCode]=useState('');
+    const [color,setColor]=useState('');
+    const [warranty,setWarranty]=useState('');
+    const [year,setYear]=useState('');
+    const [category,setCategory]=useState('');
+    const [image,setImage]=useState('');
+    
     const [isPending,setIsPending]=useState(false);
     const history = useHistory();
 
     const handleSubmit= (e) => {
         e.preventDefault();
-        const product= {Name, Description, Producer};
+        const product= {title,product_code,color,warranty,producer,price,description,year,image,category };
 
         setIsPending(true);
-        fetch('http://localhost:8000/products',{
+        fetch('http://127.0.0.1:8000/api/v1/catalogue/product/',{
 
             method: 'POST',
             headers: {"Content-Type": "application/json"},
@@ -31,21 +39,37 @@ const Create = () => {
         <div className="create">
             <h2>Add a new Product</h2>
             <form onSubmit={handleSubmit}>
-                <label> Product Name:</label>
+                <label> Product Title:</label>
                 <input type="text"
                 required
-                value={Name}
-                onChange={(e) => setName(e.target.value)}/>
-                <label> Product Body:</label>
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}/>
+                <label> Product Description:</label>
                 <textarea 
                 required
-                value={Description}
+                value={description}
                 onChange={(e)=> setDescription(e.target.value)}/>
-                <label> Product author:</label>
-                <select value={Producer}
+                <label>Product Price:</label>
+                <textarea
+                required
+                value={price}
+                onChange={(e)=>setPrice(e.target.value)}/>
+                <label>Product code:</label>
+                <textarea 
+                required
+                value={product_code}
+                onChange={(e)=>setProductCode(e.target.value)}/>
+                <label>Product Color:</label>
+                <textarea
+                required
+                value={color}
+                onChange={(e)=>setColor(e.target.value)}
+                />
+                <label> Product Producer:</label>
+                <select value={producer}
                 onChange={(e)=> setProducer(e.target.value)}>
-                    <option value="vlad">vlad</option>
-                    <option value="andrei">andrei</option>
+                    <option value="BenQ">BenQ</option>
+                    <option value="Eizo">Eizo</option>
                 </select>
                 {!isPending && <button>Add Product</button> }
                 {isPending && <button>Adding Product...</button> }

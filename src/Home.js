@@ -3,20 +3,13 @@ import useFetch from './useFetch';
 import React, {useState} from 'react'
 
 const Home = () => {
-
-    const {data: products, isPending, error}=useFetch('http://localhost:8000/products/');
-
-
+    const {data, isPending, error}=useFetch('http://127.0.0.1:8000/api/v1/catalogue/product/');
     return (
         
             <div className="home">
-        
-
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>} 
-             {products && <ProductList products={products} title="All Products!" />} 
-
-           
+             {data && data.results && <ProductList products={data.results} title="" />} 
         </div>
       );
 }
