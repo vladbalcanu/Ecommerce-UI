@@ -8,17 +8,17 @@ const Create = () => {
     const [price,setPrice]=useState('');
     const [product_code,setProductCode]=useState('');
     const [color,setColor]=useState('');
-    const [warranty,setWarranty]=useState('');
-    const [year,setYear]=useState('');
-    const [category,setCategory]=useState('');
-    const [image,setImage]=useState('');
+    const [warranty,setWarranty]=useState('300');
+    const [year,setYear]=useState('2021');
+    const [category,setCategory]=useState('1');
+    // const [image,setImage]=useState('');
     
     const [isPending,setIsPending]=useState(false);
     const history = useHistory();
 
     const handleSubmit= (e) => {
         e.preventDefault();
-        const product= {title,product_code,color,warranty,producer,price,description,year,image,category };
+        const product= {title,product_code,color,warranty,producer,price,description,year,category };
 
         setIsPending(true);
         fetch('http://127.0.0.1:8000/api/v1/catalogue/product/',{
