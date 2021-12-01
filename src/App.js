@@ -23,7 +23,7 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Navbar/>
+      <Navbar/>
       <Routes>
         <Route exact path="/" element={<HomePage/>}/>
         <Route exact path="/register" element={<Register/>}/>
