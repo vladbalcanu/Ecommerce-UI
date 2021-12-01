@@ -2496,6 +2496,7 @@
     "chalk" "^4.0.0"
 
 "@material/animation@^13.0.0":
+<<<<<<< HEAD
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/animation/-/animation-13.0.0.tgz#42ec7aee6548ba27edb49063c7a7ae431e4ef450"
   integrity sha512-YR0/u4u56qXDjKYolQ7F+IvlPkaSBhMl/dZv8DK0FbD6PH4ckOPd3bEXNRndXtprsxwknQQP2pttjPImylkl0g==
@@ -2528,12 +2529,47 @@
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/elevation/-/elevation-13.0.0.tgz#ae3eabc20e864240144fdf5c16b09a1e7a52852c"
   integrity sha512-hzdblgamVRbC0UwKafcvUVDvKzMiOSveDiwGgFk+EAg/tZRdwMlQPyf/9I6Lr8Cw/pNGnEOPhmCDOYPOHimr0w==
+=======
+  "integrity" "sha512-YR0/u4u56qXDjKYolQ7F+IvlPkaSBhMl/dZv8DK0FbD6PH4ckOPd3bEXNRndXtprsxwknQQP2pttjPImylkl0g=="
+  "resolved" "https://registry.npmjs.org/@material/animation/-/animation-13.0.0.tgz"
+  "version" "13.0.0"
+  dependencies:
+    "tslib" "^2.1.0"
+
+"@material/base@^13.0.0":
+  "integrity" "sha512-vFx0JryRfcvUNX3cZ2u32wUMvxzd+c/YW0LFOXNgqCDWlubHcMm0Y6Wz371LhfQo80/NE69u+/4Joo99yKnVeg=="
+  "resolved" "https://registry.npmjs.org/@material/base/-/base-13.0.0.tgz"
+  "version" "13.0.0"
+  dependencies:
+    "tslib" "^2.1.0"
+
+"@material/density@^13.0.0":
+  "integrity" "sha512-ppJTzOsuhjQam5GvHaq/XZocZNUr+41XQ2sd5nONAmQ0wwzXgqG0FaxtF1EXqK3uZFadz+vAu6enagre9DXhTA=="
+  "resolved" "https://registry.npmjs.org/@material/density/-/density-13.0.0.tgz"
+  "version" "13.0.0"
+  dependencies:
+    "tslib" "^2.1.0"
+
+"@material/dom@^13.0.0":
+  "integrity" "sha512-M9HLAYBZtkTUvf66FL+jAEvUOdhji1HkGA1mV6oyE+HY9gkCkmso+mngvzlLd5+uaAVE9I3WQFhSb9gp0cpXnw=="
+  "resolved" "https://registry.npmjs.org/@material/dom/-/dom-13.0.0.tgz"
+  "version" "13.0.0"
+  dependencies:
+    "@material/feature-targeting" "^13.0.0"
+    "tslib" "^2.1.0"
+
+"@material/elevation@^13.0.0":
+  "integrity" "sha512-hzdblgamVRbC0UwKafcvUVDvKzMiOSveDiwGgFk+EAg/tZRdwMlQPyf/9I6Lr8Cw/pNGnEOPhmCDOYPOHimr0w=="
+  "resolved" "https://registry.npmjs.org/@material/elevation/-/elevation-13.0.0.tgz"
+  "version" "13.0.0"
+>>>>>>> 57061c4... Moving to Redux
   dependencies:
     "@material/animation" "^13.0.0"
     "@material/base" "^13.0.0"
     "@material/feature-targeting" "^13.0.0"
     "@material/rtl" "^13.0.0"
     "@material/theme" "^13.0.0"
+<<<<<<< HEAD
     tslib "^2.1.0"
 
 "@material/feature-targeting@^13.0.0":
@@ -2547,6 +2583,21 @@
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/icon-button/-/icon-button-13.0.0.tgz#e2d3fb5dcd2b944883f8241420b82f0f3ce2ebf2"
   integrity sha512-SdxFytWvbfN0fj7jHFq3DqK5/Zoms+Ipuv6fI8AzwgDFe7mXJ2euPahN+3XcmJ3BaSMyfYsdbcYdCWs8bgHW1w==
+=======
+    "tslib" "^2.1.0"
+
+"@material/feature-targeting@^13.0.0":
+  "integrity" "sha512-QJClfeaA4EMyAxKJy9WR0Nx+/VwSZCkhGLUVBG9NhxqYGfl/LtaeaidrNm32vYEoNZAofN92VD2RwQTRwp/dMQ=="
+  "resolved" "https://registry.npmjs.org/@material/feature-targeting/-/feature-targeting-13.0.0.tgz"
+  "version" "13.0.0"
+  dependencies:
+    "tslib" "^2.1.0"
+
+"@material/icon-button@^13.0.0":
+  "integrity" "sha512-SdxFytWvbfN0fj7jHFq3DqK5/Zoms+Ipuv6fI8AzwgDFe7mXJ2euPahN+3XcmJ3BaSMyfYsdbcYdCWs8bgHW1w=="
+  "resolved" "https://registry.npmjs.org/@material/icon-button/-/icon-button-13.0.0.tgz"
+  "version" "13.0.0"
+>>>>>>> 57061c4... Moving to Redux
   dependencies:
     "@material/base" "^13.0.0"
     "@material/density" "^13.0.0"
@@ -2556,12 +2607,21 @@
     "@material/rtl" "^13.0.0"
     "@material/theme" "^13.0.0"
     "@material/touch-target" "^13.0.0"
+<<<<<<< HEAD
     tslib "^2.1.0"
 
 "@material/ripple@^13.0.0":
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/ripple/-/ripple-13.0.0.tgz#fc6a56ccd33c1edf3f049d9e79294f496c2d72df"
   integrity sha512-hx4B40hB2rRfsGwf1jwo2GGlYDq0yUQjcMcMmXfQipPJNpQhy8ylmXKc1DBjmWf7EQ/MgbfCSYwPrYXrbGP31w==
+=======
+    "tslib" "^2.1.0"
+
+"@material/ripple@^13.0.0":
+  "integrity" "sha512-hx4B40hB2rRfsGwf1jwo2GGlYDq0yUQjcMcMmXfQipPJNpQhy8ylmXKc1DBjmWf7EQ/MgbfCSYwPrYXrbGP31w=="
+  "resolved" "https://registry.npmjs.org/@material/ripple/-/ripple-13.0.0.tgz"
+  "version" "13.0.0"
+>>>>>>> 57061c4... Moving to Redux
   dependencies:
     "@material/animation" "^13.0.0"
     "@material/base" "^13.0.0"
@@ -2569,6 +2629,7 @@
     "@material/feature-targeting" "^13.0.0"
     "@material/rtl" "^13.0.0"
     "@material/theme" "^13.0.0"
+<<<<<<< HEAD
     tslib "^2.1.0"
 
 "@material/rtl@^13.0.0":
@@ -2591,10 +2652,35 @@
   version "13.0.0"
   resolved "https://registry.yarnpkg.com/@material/touch-target/-/touch-target-13.0.0.tgz#330d0b03988f65916cce3a97f38c5b9d74104a27"
   integrity sha512-2BMjj+nwKIYG7cZZGcNuRSKo53knqDu9ksv9wLidxjLgzqXBd1v9gdXsqMRQXepoOqftWGmYMaRYI0xMnxt6lA==
+=======
+    "tslib" "^2.1.0"
+
+"@material/rtl@^13.0.0":
+  "integrity" "sha512-nFGy3iQg7k+xLs67eb86mRFVLwa0yi7MusqRK4OM8DXcLO5yoVfUTPKpdSykcbRryp9imVHsxutox2tZawR4og=="
+  "resolved" "https://registry.npmjs.org/@material/rtl/-/rtl-13.0.0.tgz"
+  "version" "13.0.0"
+  dependencies:
+    "@material/theme" "^13.0.0"
+    "tslib" "^2.1.0"
+
+"@material/theme@^13.0.0":
+  "integrity" "sha512-KAe1s0MvvfCGAwJliDVTvgAKuD3ESwhl7F7br4Iam4IPdqME2rWl8NPhKHFfaWqTG7PyCgMMngYEYuA8cLNTsA=="
+  "resolved" "https://registry.npmjs.org/@material/theme/-/theme-13.0.0.tgz"
+  "version" "13.0.0"
+  dependencies:
+    "@material/feature-targeting" "^13.0.0"
+    "tslib" "^2.1.0"
+
+"@material/touch-target@^13.0.0":
+  "integrity" "sha512-2BMjj+nwKIYG7cZZGcNuRSKo53knqDu9ksv9wLidxjLgzqXBd1v9gdXsqMRQXepoOqftWGmYMaRYI0xMnxt6lA=="
+  "resolved" "https://registry.npmjs.org/@material/touch-target/-/touch-target-13.0.0.tgz"
+  "version" "13.0.0"
+>>>>>>> 57061c4... Moving to Redux
   dependencies:
     "@material/base" "^13.0.0"
     "@material/feature-targeting" "^13.0.0"
     "@material/rtl" "^13.0.0"
+<<<<<<< HEAD
     tslib "^2.1.0"
 
 "@mui/base@5.0.0-alpha.59":
@@ -2682,6 +2768,9 @@
     "@types/react-is" "^16.7.1 || ^17.0.0"
     prop-types "^15.7.2"
     react-is "^17.0.2"
+=======
+    "tslib" "^2.1.0"
+>>>>>>> 57061c4... Moving to Redux
 
 "@nodelib/fs.scandir@2.1.4":
 <<<<<<< HEAD
@@ -6656,6 +6745,11 @@ cosmiconfig@^6.0.0:
     "define-property" "^0.2.5"
     "isobject" "^3.0.0"
     "static-extend" "^0.1.1"
+
+"classnames@^2.2.3":
+  "integrity" "sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA=="
+  "resolved" "https://registry.npmjs.org/classnames/-/classnames-2.3.1.tgz"
+  "version" "2.3.1"
 
 "clean-css@^4.2.3":
   "integrity" "sha512-VcMWDN54ZN/DS+g58HYL5/n4Zrqe8vHJpGA8KdgUXFU4fuP/aHNw8eld9SyEIyabIMJX/0RaY/fplOo5hYLSFA=="
@@ -17960,7 +18054,7 @@ react-redux@^7.2.6:
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@*", "react-dom@^17.0.2", "react-dom@>= 16.8.0", "react-dom@>=16.8":
+"react-dom@*", "react-dom@^0.14.7 || ^15.0.0-0 || ^16.0.0 || ^17.0.0", "react-dom@^17.0.2", "react-dom@>= 16.8.0", "react-dom@>=16.8":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -17968,6 +18062,13 @@ react-redux@^7.2.6:
     "loose-envify" "^1.1.0"
     "object-assign" "^4.1.1"
     "scheduler" "^0.20.2"
+
+"react-dropdown@^1.9.2":
+  "integrity" "sha512-g4eufErTi5P5T5bGK+VmLl//qvAHy79jm6KKx8G2Tl3mG90bpigb+Aw85P+C2JUdAnIIQdv8kP/oHN314GvAfw=="
+  "resolved" "https://registry.npmjs.org/react-dropdown/-/react-dropdown-1.9.2.tgz"
+  "version" "1.9.2"
+  dependencies:
+    "classnames" "^2.2.3"
 
 "react-error-overlay@^6.0.9":
   "integrity" "sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew=="
@@ -18147,6 +18248,7 @@ react-test-renderer@^17.0.2:
     "scheduler" "^0.20.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 react-transition-group@^4.4.2:
   version "4.4.2"
   resolved "https://registry.npmjs.org/react-transition-group/-/react-transition-group-4.4.2.tgz"
@@ -18163,6 +18265,9 @@ react@^17.0.2:
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
 =======
 "react@*", "react@^16.0.0 || ^17.0.0", "react@^16.14.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^17.0.2", "react@>= 16", "react@>= 16.8.0", "react@>=16.8", "react@17.0.2":
+=======
+"react@*", "react@^0.14.7 || ^15.0.0-0 || ^16.0.0 || ^17.0.0", "react@^16.0.0 || ^17.0.0", "react@^16.14.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^17.0.2", "react@>= 16", "react@>= 16.8.0", "react@>=16.8", "react@17.0.2":
+>>>>>>> 57061c4... Moving to Redux
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
@@ -21679,7 +21784,7 @@ v8-to-istanbul@^7.0.0:
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   "version" "1.14.1"
 
-"tslib@^2.0.3":
+"tslib@^2.0.3", "tslib@^2.1.0":
   "integrity" "sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.1.0.tgz"
   "version" "2.1.0"

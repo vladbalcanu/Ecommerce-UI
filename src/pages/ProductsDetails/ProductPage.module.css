@@ -31,13 +31,14 @@
   }
   
   .deleteButton{
-    background-color: rgba(0, 64, 148, 0.726);
-    border:none;
-    color: white;
-    padding: 20px 30px;
-    font-size: 16px;
+    background-color: #f1356d;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
     cursor: pointer;
-  }
+    margin-left:200px;
+    }
     .addButton{
       background-color: #f1356d;
     color: #fff;

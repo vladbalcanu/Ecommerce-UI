@@ -23,7 +23,6 @@ const ProductsDetails = () => {
     return (  
         
         <div className={styles.productDetails}>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
             
             {isPending && <div>Loading...</div>}
             {error && <div>{ error }</div>}
@@ -40,9 +39,8 @@ const ProductsDetails = () => {
                     <p>Year: {product.year}</p>
                     <p>Product Code: {product.product_code}</p>
                     <p>Color: {product.color}</p>
+                    <button className={styles.deleteButton}>Delete</button>
                     <button className={styles.addButton}>Add to List</button>
-                    <button className={styles.deleteButton}><i className="fa fa-trash"></i></button>
-                    
                     
                 </article>
             ) }
