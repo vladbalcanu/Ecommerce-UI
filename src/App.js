@@ -7,6 +7,8 @@ import {NotFoundPage} from './pages/NotFoundPage/loadable'
 import {useDispatch} from 'react-redux'
 import {getCurrentUser} from './store/auth/thunks'
 import {ProductsPage} from './pages/ProductsPage'
+import {Navbar} from './components/Navbar'
+import ProductsDetails from './pages/ProductsDetails'
 
 
 function App() {
@@ -19,11 +21,14 @@ function App() {
 
   return (
     <BrowserRouter>
+      <Navbar/>
       <Routes>
         <Route exact path="/" element={<HomePage/>}/>
         <Route exact path="/register" element={<Register/>}/>
         <Route exact path="/signin" element={<SignIn/>}/>
         <Route exact path='/catalogue/searchProducts' element={<ProductsPage/>}/>
+        <Route exact path='/catalogue/searchProducts/products/:id' element={<ProductsDetails/>}/>
+
         <Route element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>
