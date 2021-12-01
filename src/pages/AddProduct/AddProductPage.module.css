@@ -1,0 +1,33 @@
+.createPage{
+    max-width: 400px;
+    margin:0 auto;
+    text-align:center;
+  }
+  
+  .createPage label {
+    text-align: center;
+    display:block;
+  }
+  .createPage h2{
+    font-size:20px;
+    color:#f1356d;
+    margin-bottom: 30px;
+  }
+  .createPage input, .createPage textarea, .createPage select{
+  width: 100%;
+  padding: 10px px;
+  margin: 10px 16;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+  
+  }
+  .createPage button{
+    margin: auto;
+    background: #f1356d;
+    color: #fff;
+    border:0;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor:pointer;
+  }

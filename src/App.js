@@ -9,6 +9,7 @@ import {getCurrentUser} from './store/auth/thunks'
 import {ProductsPage} from './pages/ProductsPage'
 import {Navbar} from './components/Navbar'
 import ProductsDetails from './pages/ProductsDetails'
+import {Create} from './pages/AddProduct'
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/signin" element={<SignIn/>}/>
         <Route exact path='/catalogue/searchProducts' element={<ProductsPage/>}/>
         <Route exact path='/catalogue/searchProducts/products/:id' element={<ProductsDetails/>}/>
+        <Route exact path='/create/' element={<Create/>}/>
 
         <Route element={<NotFoundPage/>}/>
       </Routes>

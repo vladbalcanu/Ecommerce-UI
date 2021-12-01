@@ -120,40 +120,6 @@ color: #f1356d;
   text-decoration: none;
 }
 
-
-.create{
-  max-width: 400px;
-  margin:0 auto;
-  text-align:center;
-}
-
-.create label {
-  text-align: left;
-  display:block;
-}
-.create h2{
-  font-size:20px;
-  color:#f1356d;
-  margin-bottom: 30px;
-}
-.create input, .create textarea, .create select{
-width: 100%;
-padding: 6px 10px;
-margin: 10px 0;
-border: 1px solid #ddd;
-box-sizing: border-box;
-display: block;
-
-}
-.create button{
-  background: #f1356d;
-  color: #fff;
-  border:0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
 .searchBar{
   padding-left: 180px;
   
@@ -163,7 +129,6 @@ display: block;
   width:300px ;
 }
 .searchBar button{
-
   background: #f1356d;
   color: #fff;
   border:0;
@@ -171,17 +136,16 @@ display: block;
   border-radius: 8px;
   cursor: pointer;
 }
-
-
-
-.categorySearch {
-  align-items:flex-end ;
-
-}
-
-.dropDown{
-  padding: 5px 10px;
-  margin-left: 600px;
+.searchBar select{
   
-
+  margin-left: 15px;
+  padding: 8px 14px;
+  font-size: 20px;
+}
+.categorySearch{
+  background-color: rgb(8, 206, 173);
+  color: rgb(227, 231, 11);
+}
+.linkStyle{
+  text-decoration: none;
 }
