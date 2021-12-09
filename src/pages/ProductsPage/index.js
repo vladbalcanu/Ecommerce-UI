@@ -2,13 +2,25 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProducts } from "../../store/catalogue/selectors";
-import { getProducts, } from "../../store/catalogue/thunks";
+import { getProducts, searchProducts, } from "../../store/catalogue/thunks";
 import styles from './ProductsPage.module.css';
 import {selectCategories} from "../../store/categories/selectors";
 import {getCategories} from "../../store/categories/thunks";
 import CategoryService from "../../services/catalogue/CategoryService";
+import RecipeReviewCard from "../../components/productCard";
+import { InsertEmoticonTwoTone } from "@mui/icons-material";
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 
-
+const Item = styled(Paper)(({ theme }) => ({
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
 export const ProductsPage = () => {
     const [text,setText] = useState("")
@@ -22,12 +34,14 @@ export const ProductsPage = () => {
     }, [])
     
     function onChangeSearch(event){
-        setText(event.target.value)
-        console.log(text);
+        setText(event.target.value);
     }
 
     function handleSubmit(event){
         event.preventDefault();
+        console.log(text);
+        dispatch(searchProducts(text,category))
+        
     }
 
     useEffect(()=>{
@@ -55,7 +69,7 @@ export const ProductsPage = () => {
                 name="searchbar"
                 onChange = {onChangeSearch} 
             />
-                <button type="submit">Search</button>
+                <button onClick={handleSubmit} type="submit">Search</button>
                 <label >
                 { <select value={category}
                 onChange={(e)=>setCategory(e.target.value)} className={styles.categorySearch}>
@@ -73,22 +87,21 @@ export const ProductsPage = () => {
             
 
 
-            {  
-                products.filter(item => text === "" || item.title.includes(text)).map(item =>
-                    <Link to={`/catalogue/searchProducts/products/${item.id}`} className={styles.linkStyle}>
-                    <div className={styles.productPreview}>
-                        <h2>Name: {item.title}</h2>
-                        <h3>Producer: {item.producer}</h3>
-                        <h4>Price: {item.price}</h4>
-                        <img className={styles.productPhoto} src={item.image}>
-                            </img>
+              <Grid container spacing={2} columns={12}>
+
+                { products.map(item => (
+                    
+                    <Grid item xs={4}>
+                        <style>
+                            text-decoration:none;
+                            </style>
                         
+                            <RecipeReviewCard product={item}/>
                         
-                    </div>
-                    </Link>
-                )
-            }
+                    </Grid>
+                ))}
+                </Grid>
             </div>
-    );
+    )
 }
 

@@ -8,6 +8,7 @@ import {useDispatch} from 'react-redux'
 import {getCurrentUser} from './store/auth/thunks'
 import {ProductsPage} from './pages/ProductsPage'
 import {Navbar} from './components/Navbar'
+import RecipeReviewCard from './components/productCard/index'
 import ProductsDetails from './pages/ProductsDetails'
 import {Create} from './pages/AddProduct'
 
@@ -30,6 +31,7 @@ function App() {
         <Route exact path='/catalogue/searchProducts' element={<ProductsPage/>}/>
         <Route exact path='/catalogue/searchProducts/products/:id' element={<ProductsDetails/>}/>
         <Route exact path='/create/' element={<Create/>}/>
+        <Route exact path='/card' element={<RecipeReviewCard/>}/>
 
         <Route element={<NotFoundPage/>}/>
       </Routes>
