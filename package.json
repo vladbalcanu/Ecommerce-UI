@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
+    "@material/icon-button": "^13.0.0",
     "@mui/icons-material": "^5.2.1",
     "@mui/material": "^5.2.3",
     "@reduxjs/toolkit": "^1.6.2",
@@ -16,6 +17,7 @@
     "jest-styled-components": "^7.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-dropdown": "^1.9.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
