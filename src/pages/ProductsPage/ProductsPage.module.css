@@ -1,0 +1,150 @@
+
+/*base styles */
+.navbar {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  border-bottom: 1 px solid #f2f2f2;
+}
+
+.navbar h1{
+  color:blueviolet;
+}
+
+.navbar .links {
+  margin-left: auto;
+}
+
+.navbar a{
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+}
+.navbar a:hover{
+color: #f1356d;
+}
+
+.homeTitle{
+  padding: 10px 16px;
+  border-bottom: 1px solid #fafafa;
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  background-color: burlywood;
+}
+.productList{
+  max-width: 1200px;
+  max-height: 300px;
+  margin: 40px auto;
+  padding: 20px;
+}
+.productList .links{
+  text-decoration: none;
+}
+.productPreview {
+  padding: 5px 16px;
+  margin: 20px 0;
+  border-bottom: 1px solid #fafafa;
+  max-height: 500px;
+}
+@keyframes example {
+  0%   {background-color: rgb(255, 255, 255);}
+  2%  {background-color: rgb(39, 122, 190);}
+}
+
+.productPreview:hover {
+  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+  box-decoration-break: clone;
+  transition-duration: 1s;
+  transition-property: all;
+  background-color: rgb(255, 255, 255);
+  animation-name: example;
+  animation-duration: 100s;
+}
+
+.productPreview h2{
+  border-top: 100px;
+  font-size:25px;
+  text-decoration: none;
+}
+.productPreview link{
+  text-decoration: red;
+}
+.productPreview h2:link{ 
+  text-decoration: none;
+}
+.productPreview h3{
+  border-top: 50px;
+  text-decoration: none;
+}
+
+.productPreview:hover h2{
+  transition-duration: 0.5s;
+  transition-property: all;
+  font-size: 40px;
+}
+
+.productPhoto{
+  margin-left: 600px;
+  padding-bottom: 1000px;
+  height: 300px;
+  width: 400px;
+}
+.productPreview h2{
+  transition-duration: 0.5s;
+  transition-property: all;
+  text-decoration: none;
+  font-size:30px;
+  color: #f1356d;
+  margin-bottom:8px;
+}
+.productPreview button{
+    visibility: collapse;
+    transition-duration: 0.5s;
+    transition-property: all;
+}
+.productPreview:hover button{
+    transition-duration: 0.5s;
+    transition-property: all;
+    visibility: visible;
+}
+.productPreview:hover .productPhoto{
+  height: 300px;
+  width: 500px;
+  transition-duration: 0.5s;
+  transition-property: all;
+
+}
+.productPreview a{
+  text-decoration: none;
+}
+
+.searchBar{
+  padding-left: 180px;
+  
+  }
+.searchBar input{
+  height: 25px;
+  width:300px ;
+}
+.searchBar button{
+  background: #f1356d;
+  color: #fff;
+  border:0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.searchBar select{
+  
+  margin-left: 15px;
+  padding: 8px 14px;
+  font-size: 20px;
+}
+.categorySearch{
+  background-color: rgb(8, 206, 173);
+  color: rgb(227, 231, 11);
+}
+.linkStyle{
+  text-decoration: none;
+}
