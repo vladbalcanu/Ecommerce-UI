@@ -4,104 +4,193 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectProducts } from "../../store/catalogue/selectors";
 import { getProducts, searchProducts, } from "../../store/catalogue/thunks";
 import styles from './ProductsPage.module.css';
-import {selectCategories} from "../../store/categories/selectors";
-import {getCategories} from "../../store/categories/thunks";
+import { selectCategories } from "../../store/categories/selectors";
+import { getCategories } from "../../store/categories/thunks";
 import CategoryService from "../../services/catalogue/CategoryService";
 import RecipeReviewCard from "../../components/productCard";
 import { InsertEmoticonTwoTone } from "@mui/icons-material";
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { setCategories } from "../../store/categories";
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
+import { Button, IconButton, Typography } from "@mui/material";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel'
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import { AppBar } from "@mui/material";
+
 
 const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '70%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  backgroundColor: alpha(theme.palette.common.black, 0.05),
+  color: 'black',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '20ch',
+      '&:focus': {
+        width: '40ch',
+      },
+    },
+  },
+}));
 
 export const ProductsPage = () => {
-    const [text,setText] = useState("")
-    const [category,setCategory]=useState("")
-    const dispatch=useDispatch();
-    const products=useSelector(selectProducts)
-    const categories=useSelector(selectCategories)
+  const [searchText, setSearchText] = useState("")
+  const [category, setCategory] = useState("")
+  const dispatch = useDispatch();
+  const products = useSelector(selectProducts)
+  const categories = useSelector(selectCategories)
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [])
 
-    useEffect(()=>{
-        dispatch(getProducts());
-    }, [])
-    
-    function onChangeSearch(event){
-        setText(event.target.value);
+  function onChangeSearch(event) {
+    setSearchText(event.target.value);
+  }
+
+  function onKeyDown(event) {
+    if (event.code === "Enter") {
+      handleSubmit();
     }
+  }
 
-    function handleSubmit(event){
-        event.preventDefault();
-        console.log(text);
-        dispatch(searchProducts(text,category))
-        
-    }
+  function handleSubmit(event) {
+    console.log(event);
 
-    useEffect(()=>{
-        dispatch(getCategories());
-    },[])
+    dispatch(searchProducts(searchText, category));
+  }
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [])
+
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
 
 
 
-    return (  
-        <div className={styles.productList}>
-            
-            <div className={styles.searchBar}> 
-            <form 
-                action="/" 
-                method="get"
-                onSubmit = {handleSubmit}
-                >
+  return (
+    <div className={styles.productList}>
 
-             <label htmlFor="header-search">
-            </label>
-            <input
+      <div className={styles.searchBar}>
+        <form
+          action="/"
+          method="get"
+          onSubmit={handleSubmit}
+        >
+          
+           
+          <label>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
                 type="text"
-                id="header-search"
-                placeholder="Search Products"
-                name="searchbar"
-                onChange = {onChangeSearch} 
-            />
-                <button onClick={handleSubmit} type="submit">Search</button>
-                <label >
-                { <select value={category}
-                onChange={(e)=>setCategory(e.target.value)} className={styles.categorySearch}>
-                    {categories && categories.map(item => (
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+                onChange={onChangeSearch}
+                borderRadius="1px"
+                border="Black"
+                onKeyDown={onKeyDown}
+              />
+              <FormControl sx={{ ml: 5, minWidth: 150 }}>
+                <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={category}
+                  label="Category"
+                  onChange={handleChange}
+                >
+                  {categories.map(item => (
+                    <MenuItem value={item.id}>{item.title}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Search>
+          </label>
+        </form>
+      </div>
 
-                        <option value={item.id}>{item.title}
-                        </option>
-                    ))}
-                    </select> 
-                    }
-                    </label>
+      <div>
 
-                </form>
-            </div>
-            
+      <Box sx={{ flexGrow: 1 , 
+        backgroundColor:"white"}}>  
 
+      <AppBar position="static" sx={{
+        backgroundColor:"white"
+      }}>
 
-              <Grid container spacing={2} columns={12}>
+        <div className={styles.selectionBox}>
+        <Box sx={{backgroundColor:'red'}}>
+          </Box>
+        </div>
+      <div className={styles.productGrid}>
+      <Grid container spacing={2} columns={12} sx={{
+        alignContent: "right",
 
-                { products.map(item => (
-                    
-                    <Grid item xs={4}>
-                        <style>
-                            text-decoration:none;
-                            </style>
-                        
-                            <RecipeReviewCard product={item}/>
-                        
-                    </Grid>
-                ))}
-                </Grid>
-            </div>
-    )
+      }}>
+    
+        {products.map(item => (
+
+          <Grid item xs={4}>
+
+            <RecipeReviewCard product={item} />
+
+          </Grid>
+        ))}
+      </Grid>
+      </div>
+      </AppBar>
+      </Box>
+      </div>
+    </div>
+  )
 }
 

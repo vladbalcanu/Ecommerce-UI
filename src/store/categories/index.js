@@ -17,6 +17,7 @@ export const index=createSlice({
         },
         setCategories:(state,action)=>{
           state.categories=action.payload.categories
+          console.log(state.categories);
           
         }
     }

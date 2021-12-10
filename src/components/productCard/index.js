@@ -16,38 +16,22 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddIcon from '@mui/icons-material/Add';
 import BasicRating from './rating';
-import { Link } from "react-router-dom";
 import styles from './productcard.module.css';
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import Link from '@mui/material/Link';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 export default function RecipeReviewCard({product}) {
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
   return (
     <Card sx={{ maxWidth: 345 }}>
         <div className={styles.cardStyle}>
-    <Link to={`/catalogue/searchProducts/products/${product.id}`}>
+        <Link href={`/catalogue/searchProducts/products/${product.id}`} underline="none">
       <CardHeader
         title={product.title}
         producer={product.producer}
       />
       <CardMedia
         component="img"
-        height="194"
+        height="240"
         image={product.image}
         alt="Whatever"
       />
@@ -60,13 +44,13 @@ export default function RecipeReviewCard({product}) {
       </Link>
       </div>
 
-      <CardActions disableSpacing>
+      <CardActions >
         
-        <IconButton aria-label="share">
+        <IconButton aria-label="Rating" sx={{mr:15}}>
           <BasicRating></BasicRating>
         </IconButton>
-        <IconButton aria-label="add to cart">
-          <AddIcon />
+        <IconButton aria-label="add to cart" color="success" size="large" >
+          <AddBoxIcon />
         </IconButton>
       </CardActions>
     </Card>

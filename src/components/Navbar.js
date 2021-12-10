@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from './Components.module.css';
 
-export const  Navbar = () => {
+export const Navbar = () => {
     return ( 
         <nav className={styles.navbar}>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
@@ -15,3 +15,4 @@ export const  Navbar = () => {
         </nav>
      );
 }
+export default Navbar;

@@ -6,6 +6,7 @@ export const getCategories=() => async (dispatch) =>{
     dispatch(setIsPending(true))
     try{
         const paginatedCategories=await CategoryService.getCategories()
+        console.log(paginatedCategories);
         dispatch(setCategories({categories:paginatedCategories.results}))
     }catch(error){
         dispatch(setError())
