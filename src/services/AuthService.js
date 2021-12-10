@@ -17,6 +17,14 @@ export default class AuthService {
     localStorageService.removeTokens()
   }
 
+  static async signup({email, password, first_name, lat_name}) {
+    const {data} = await api.client.post('auth/register/', {email, password, first_name, lat_name})
+    api.access = data.tokens.access
+    api.refresh = data.tokens.refresh
+    localStorageService.setTokens({...data.tokens})
+    return data.user
+  }
+
   static async me() {
     const {data} = await api.client('/auth/me')
     return data

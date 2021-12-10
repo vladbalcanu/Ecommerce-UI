@@ -6,7 +6,7 @@ export const login = ({email, password}) => async (dispatch) => {
   dispatch(setIsLoading(true))
   try {
     await AuthService.login({email, password})
-    await dispatch(getCurrentUser())
+    dispatch(getCurrentUser())
   } catch (error) {
     dispatch(setError({error: error?.response?.data}))
   } finally {
@@ -33,6 +33,18 @@ export const logout = () => async (dispatch) => {
   try {
     await AuthService.logout()
     dispatch(logoutSuccess())
+  } catch (error) {
+    dispatch(setError({error: error?.response?.data}))
+  } finally {
+    dispatch(setIsLoading(false))
+  }
+}
+
+export const signup = ({email, password, first_name, lat_name}) => async (dispatch) => {
+  dispatch(setIsLoading(true))
+  try {
+    const currentUser = await AuthService.signup({email, password, first_name, lat_name})
+    dispatch(setCurrentUser({currentUser}))
   } catch (error) {
     dispatch(setError({error: error?.response?.data}))
   } finally {
