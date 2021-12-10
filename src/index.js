@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import './index.css';
+
 
 import {configureAppStore} from './store/configureStore'
 import {Provider} from 'react-redux'
