@@ -1,18 +1,58 @@
 import { Link } from "react-router-dom";
 import styles from './Components.module.css';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
+import { Badge } from "@mui/material";
+
 
 export const Navbar = () => {
     return ( 
-        <nav className={styles.navbar}>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-            <div className={styles.homeTitle}><h1>Magazin Electronice</h1></div>
-        <div className={styles.links}>
-            <Link to="/"><button className={styles.homeButton}><i className="fa fa-home"></i></button></Link>
-            <Link to="/catalogue/searchProducts" ><button className={styles.catalogueButton}><i className="fa fa-search"></i></button></Link>
-            <Link to="/create"><button className={styles.addButton}><i className="fa fa-plus-square"></i></button></Link>
-            <Link to="/"><button className={styles.cartButton}><i className="fa fa-shopping-cart"></i></button></Link>
-        </div>
-        </nav>
+        <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link to="/" className={styles.textStyle}>Home</Link>
+            </Typography>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link to="/catalogue/searchProducts" className={styles.textStyle}>Catalogue</Link>
+            </Typography>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link to="/" className={styles.textStyle}>FAQ</Link>
+            </Typography>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link to="/" className={styles.textStyle}>User Account</Link>
+            </Typography>
+            <Link to="/" className={styles.textStyle}><Button color="inherit">Login</Button></Link>
+            <Link to="/" className={styles.textStyle}><IconButton color ="inherit" size="large">
+                <Badge badgeContent={5} color="error">
+                <ShoppingBagIcon /> 
+                </Badge>
+            </IconButton> </Link>
+            <Link to="/" className={styles.textStyle}><IconButton color ="inherit">
+                <Badge badgeContent={5} color="error">
+                <CircleNotificationsIcon></CircleNotificationsIcon>
+                </Badge>
+            </IconButton></Link>
+          </Toolbar>
+        </AppBar>
+      </Box>
+        
      );
 }
 export default Navbar;

@@ -16,11 +16,9 @@
   .productDetails p{
     font-size: 24px;
   }
-
-  .singleProductPhoto{
-    width: 820px;
-    height: 600px;
-    margin-left: 640px;
+  .productImage{
+    margin-left: 29%;
+    align-items: center;
   }
   .singleProductDescription{
     font-size: 24px;

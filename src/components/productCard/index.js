@@ -17,14 +17,14 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddIcon from '@mui/icons-material/Add';
 import BasicRating from './rating';
 import styles from './productcard.module.css';
-import Link from '@mui/material/Link';
+import { Link } from "react-router-dom";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
 export default function RecipeReviewCard({product}) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 350 }}>
         <div className={styles.cardStyle}>
-        <Link href={`/catalogue/searchProducts/products/${product.id}`} underline="none">
+        <Link to={`/catalogue/searchProducts/products/${product.id}`} className={styles.textStyle}>
       <CardHeader
         title={product.title}
         producer={product.producer}
@@ -42,7 +42,7 @@ export default function RecipeReviewCard({product}) {
           </Typography>
       </CardContent>
       </Link>
-      </div>
+      
 
       <CardActions >
         
@@ -53,6 +53,7 @@ export default function RecipeReviewCard({product}) {
           <AddBoxIcon />
         </IconButton>
       </CardActions>
+      </div>
     </Card>
   );
 }

@@ -129,12 +129,22 @@ color: #f1356d;
 .linkStyle{
   text-decoration: none;
 }
-.productGrid{
-  padding-left: 600px;
+.productsBox{
+  display: flex;
+  padding: 20px;
+
 }
 .selectionBox{
-  max-width: 300px;
-  max-height: 600px;
-  align-items: left;
-
+  align-items:unset ;
+  position: relative;
+  border: black;
+  border-radius: 5px;
+  width: 600px;
+  background-color: rgb(235, 231, 231) ;
+  
+  color: #1a40e7;
+  box-shadow:5px;
+}
+.productGrid{
+  padding-left: 200px;
 }

@@ -11,6 +11,7 @@ import Navbar from './components/Navbar'
 import RecipeReviewCard from './components/productCard/index'
 import ProductsDetails from './pages/ProductsDetails'
 import {Create} from './pages/AddProduct'
+import ProductImageList from './components/productImageList'
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
         <Route exact path='/catalogue/searchProducts' element={<ProductsPage/>}/>
         <Route exact path='/catalogue/searchProducts/products/:id' element={<ProductsDetails/>}/>
         <Route exact path='/create/' element={<Create/>}/>
-        <Route exact path='/card' element={<RecipeReviewCard/>}/>
+        <Route exact path='/card' element={<ProductImageList/>}/>
         <Route element={<NotFoundPage/>}/>
       </Routes>
     </BrowserRouter>

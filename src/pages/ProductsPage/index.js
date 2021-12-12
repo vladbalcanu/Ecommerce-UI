@@ -28,6 +28,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel'
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { AppBar } from "@mui/material";
+import Container from '@mui/material/Container';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -110,6 +111,7 @@ export const ProductsPage = () => {
 
   const handleChange = (event) => {
     setCategory(event.target.value);
+    console.log(category);
   };
 
 
@@ -123,8 +125,8 @@ export const ProductsPage = () => {
           method="get"
           onSubmit={handleSubmit}
         >
-          
-           
+
+
           <label>
             <Search>
               <SearchIconWrapper>
@@ -160,35 +162,53 @@ export const ProductsPage = () => {
 
       <div>
 
-      <Box sx={{ flexGrow: 1 , 
-        backgroundColor:"white"}}>  
+        <Box sx={{
+          backgroundColor: "white"
+        }}>
 
-      <AppBar position="static" sx={{
-        backgroundColor:"white"
-      }}>
+          <AppBar position="static" sx={{
+            flexGrow: 1,
+            backgroundColor: "white",
 
-        <div className={styles.selectionBox}>
-        <Box sx={{backgroundColor:'red'}}>
-          </Box>
-        </div>
-      <div className={styles.productGrid}>
-      <Grid container spacing={2} columns={12} sx={{
-        alignContent: "right",
+          }}>
 
-      }}>
-    
-        {products.map(item => (
+            <div className={styles.productsBox}>
+              <div className={styles.selectionBox}>
+                <FormControl component="fieldset">
+                  <FormLabel component="legend">Category</FormLabel>
+                  <RadioGroup
+                    aria-label="Category"
+                    defaultValue="Monitor"
+                    name="radio-buttons-group"
+                    paddingLeft="20px"
+                    onChange={handleChange}
+                  >
+                    {categories.map(item => (
+                      <FormControlLabel value={item.id} control={<Radio />} label={item.title} />
+                    ))}
+                  </RadioGroup>
+                </FormControl>
+              </div>
 
-          <Grid item xs={4}>
+              <div className={styles.productGrid}>
+                <Grid container spacing={2} columns={12} sx={{
+                  alignContent: "right",
 
-            <RecipeReviewCard product={item} />
+                }}>
 
-          </Grid>
-        ))}
-      </Grid>
-      </div>
-      </AppBar>
-      </Box>
+                  {products.map(item => (
+
+                    <Grid item xs={4}>
+
+                      <RecipeReviewCard product={item} />
+
+                    </Grid>
+                  ))}
+                </Grid>
+              </div>
+            </div>
+          </AppBar>
+        </Box>
       </div>
     </div>
   )

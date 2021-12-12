@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { selectError, selectIsPending, selectProduct } from "../../store/product/selectors";
 import styles from './ProductPage.module.css';
 import {getProduct} from "../../store/product/thunks";
+import ProductImageList from "../../components/productImageList";
 
 
 const ProductsDetails = () => {
@@ -30,8 +31,12 @@ const ProductsDetails = () => {
             {product && (
                 <article>
                     <h2>{ product.title }</h2>
+                    <div className={styles.productImage}>
+                    <ProductImageList image={product.image}>
+
+                    </ProductImageList>
+                        </div>
                     
-                    <img src={product.image} alt="" className={styles.singleProductPhoto} />
                     <p>Price: {product.price}</p>
                     <p>Produced by { product.producer }</p>
                     <p>Category: {product.category}</p>
