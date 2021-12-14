@@ -7,7 +7,7 @@ import styles from './ProductsPage.module.css';
 import { selectCategories } from "../../store/categories/selectors";
 import { getCategories } from "../../store/categories/thunks";
 import CategoryService from "../../services/catalogue/CategoryService";
-import RecipeReviewCard from "../../components/productCard";
+import ProductCard from "../../components/productCard";
 import { InsertEmoticonTwoTone } from "@mui/icons-material";
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
@@ -80,15 +80,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const ProductsPage = () => {
-  const [searchText, setSearchText] = useState("")
+  const [searchText, setSearchText] = useState( "")
   const [category, setCategory] = useState("")
   const dispatch = useDispatch();
   const products = useSelector(selectProducts)
   const categories = useSelector(selectCategories)
   useEffect(() => {
     dispatch(getProducts());
-  }, [])
-
+    dispatch(getCategories());
+  }, [dispatch])
+ 
   function onChangeSearch(event) {
     setSearchText(event.target.value);
   }
@@ -105,9 +106,6 @@ export const ProductsPage = () => {
     dispatch(searchProducts(searchText, category));
   }
 
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [])
 
   const handleChange = (event) => {
     setCategory(event.target.value);
@@ -184,7 +182,7 @@ export const ProductsPage = () => {
                     onChange={handleChange}
                   >
                     {categories.map(item => (
-                      <FormControlLabel value={item.id} control={<Radio />} label={item.title} />
+                      <FormControlLabel value={item.id} control={<Radio />} label={item.name} />
                     ))}
                   </RadioGroup>
                 </FormControl>
@@ -200,7 +198,7 @@ export const ProductsPage = () => {
 
                     <Grid item xs={4}>
 
-                      <RecipeReviewCard product={item} />
+                      <ProductCard product={item} />
 
                     </Grid>
                   ))}

@@ -19,10 +19,16 @@ import BasicRating from './rating';
 import styles from './productcard.module.css';
 import { Link } from "react-router-dom";
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import { useEffect, useState } from "react";
 
-export default function RecipeReviewCard({product}) {
+export default function ProductCard({product}) {
+  const [image,setImage]=useState("");
+  useEffect(()=>{
+    product.images.filter(image => image.display_order==0).map(image => setImage(image.image.large));
+  })
+
   return (
-    <Card sx={{ maxWidth: 350 }}>
+    <Card sx={{ width:350}}>
         <div className={styles.cardStyle}>
         <Link to={`/catalogue/searchProducts/products/${product.id}`} className={styles.textStyle}>
       <CardHeader
@@ -32,7 +38,7 @@ export default function RecipeReviewCard({product}) {
       <CardMedia
         component="img"
         height="240"
-        image={product.image}
+        image={image}
         alt="Whatever"
       />
 
@@ -42,6 +48,8 @@ export default function RecipeReviewCard({product}) {
           </Typography>
       </CardContent>
       </Link>
+      </div>
+      <div className={styles.buttonStyles}>
       
 
       <CardActions >
@@ -49,8 +57,8 @@ export default function RecipeReviewCard({product}) {
         <IconButton aria-label="Rating" sx={{mr:15}}>
           <BasicRating></BasicRating>
         </IconButton>
-        <IconButton aria-label="add to cart" color="success" size="large" >
-          <AddBoxIcon />
+        <IconButton sx={{fontSize:60}} aria-label="add to cart" color="success" size="large" >
+          <AddBoxIcon sx={{fontSize:50}} />
         </IconButton>
       </CardActions>
       </div>

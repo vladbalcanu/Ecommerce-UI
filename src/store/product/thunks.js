@@ -6,7 +6,6 @@ export const getProduct=(id) => async (dispatch) =>{
     dispatch(setIsPending(true))
     try{
         const paginatedProduct=await ProductService.getProduct(id)
-        console.log(paginatedProduct);
         dispatch(setProduct({product:paginatedProduct}))
     }catch(error){
         dispatch(setError())

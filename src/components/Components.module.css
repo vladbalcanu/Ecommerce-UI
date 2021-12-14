@@ -5,6 +5,10 @@
     padding: 40px;
     display:flex;
   }
+  .buttonStyle{
+    text-decoration: none;
+    color: #f2f2f2;
+  }
   
   
 

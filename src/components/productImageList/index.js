@@ -8,55 +8,56 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { selectProduct } from '../../store/product/selectors';
+import { selectError, selectIsPending, selectProduct } from '../../store/product/selectors';
 import { getProduct } from '../../store/product/thunks';
+import { ImageListItem } from '@mui/material';
+import { useParams } from 'react-router-dom';
+import { setProduct } from '../../store/product';
 
 
 
-export default function ProductImageList({ image }) {
-    const [currentImage,setCurrentImage]=useState("");
-    const [imageIndex,setImageIndex]=useState("1");
-    const dispatch = useDispatch();
-    const product = useSelector(selectProduct);
+export default function ProductImageList({imageList}) {
 
-    useEffect(()=>{
-        dispatch(getProduct("5"));
-    },[])
-
-
-
-    function showPreviousPhoto(event){
+    const [displayOrder, setDisplayOrder] = useState(0);
+    const [currentImage, setCurrentImage] = useState("");
+   
+    function showPreviousPhoto(event) {
         console.log("Moving to previous image");
-        setImageIndex(parseInt(imageIndex)+1);
-        setCurrentImage("");
-        console.log(imageIndex);
+        setDisplayOrder(displayOrder - 1);
+        console.log(displayOrder);
     }
-    function showNextPhoto(event){
-        console.log("moving to next image");
-        setImageIndex(parseInt(imageIndex)-1);
-        console.log(imageIndex);
+    function showNextPhoto(event) {
+        console.log("Moving to next image");
+        setDisplayOrder(displayOrder + 1);
+        console.log(displayOrder);
     }
-
+    useEffect(() => {
+        imageList && imageList.filter(item => item.display_order == displayOrder).map(item => setCurrentImage(item.image.large));
+    }
+    )
     return (
-        <Card sx={{ maxWidth: 800 }}>
-            <div className={styles.imageList}>
-                <IconButton area-label="Go-Back" sx={{nr:15}} onClick={showPreviousPhoto} size="large">
-                    <SkipPreviousIcon></SkipPreviousIcon>
-                </IconButton>
-
-                <CardMedia
-                    component="img"
-                    height="400"
-                    width="600"
-                    image={image}
-                    alt="Whatever"
-                />
-                 <IconButton area-label="Go-Back" sx={{nr:15}} onClick={showNextPhoto} size="large">
-                    <SkipNextIcon></SkipNextIcon>
-                </IconButton>
-            </div>
-        </Card>
-
+        <div>
+            {imageList && <Card sx={{ maxWidth: 1000, height: 400, backgroundColor: "white", boxShadow: 10, alignItems: "center" }} >
+                <div className={styles.imageList}>
+                    <IconButton area-label="Go-Back" sx={{ color: "inherit" }} onClick={showPreviousPhoto} size="large">
+                        <SkipPreviousIcon></SkipPreviousIcon>
+                    </IconButton>
+                    <CardMedia
+                        component="img"
+                        maxWidth="800"
+                        height="400"
+                        align="bottom"
+                        image={currentImage}
+                        alt="Whatever"
+                    />
+                    <div className={styles.nextButton}>
+                    <IconButton area-label="Go-Back" sx={{ color: "inherit" }} onClick={showNextPhoto} size="large" alignItems="right">
+                        <SkipNextIcon></SkipNextIcon>
+                    </IconButton>
+                    </div>
+                </div>
+            </Card>}
+        </div>
     );
 
 }

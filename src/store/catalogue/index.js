@@ -21,8 +21,6 @@ export const index = createSlice({
       }
   }
 })
-
-// Action creators are generated for each case reducer function
 export const {setIsPending,setError,setProducts} = index.actions
 
 

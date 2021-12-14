@@ -1,6 +1,8 @@
 .imageList{
-    align-items: center;
-    background-color: rgb(55, 136, 212);
-    display: flex;
-
+    align-items:center;
+    background-color: rgb(255, 255, 255);
+    display:flex;
+}
+.nextButton{
+    align-items:baseline;
 }
