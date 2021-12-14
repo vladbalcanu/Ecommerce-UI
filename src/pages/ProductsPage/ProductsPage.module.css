@@ -33,7 +33,7 @@ color: #f1356d;
   background-color: burlywood;
 }
 .productList{
-  max-width: 1200px;
+  max-width: 1920px;
   max-height: 300px;
   margin: 40px auto;
   padding: 20px;
@@ -120,31 +120,33 @@ color: #f1356d;
 }
 
 .searchBar{
-  padding-left: 180px;
-  
+  padding-left: 500px;
   }
-.searchBar input{
-  height: 25px;
-  width:300px ;
-}
-.searchBar button{
-  background: #f1356d;
-  color: #fff;
-  border:0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.searchBar select{
-  
-  margin-left: 15px;
-  padding: 8px 14px;
-  font-size: 20px;
-}
 .categorySearch{
   background-color: rgb(8, 206, 173);
   color: rgb(227, 231, 11);
 }
 .linkStyle{
   text-decoration: none;
+}
+.productsBox{
+  display: flex;
+  padding: 20px;
+
+}
+.selectionBox{
+  align-items:unset ;
+  position: relative;
+  border: black;
+  border-radius: 5px;
+  width: 600px;
+  background-color: rgb(235, 231, 231) ;
+  
+  color: #1a40e7;
+  box-shadow:5px;
+}
+.productGrid{
+  padding: 10px;
+  padding-right: 5px;
+  padding-left: 150px;
 }

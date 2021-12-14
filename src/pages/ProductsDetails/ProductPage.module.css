@@ -1,48 +1,15 @@
-
-.productDetails h2{
+ .productDetails{
+    display: flex;
     font-size: 30px;
-    color: #f1356d;
-    margin-bottom: 10px;
+    color: #000000;
   }
-
-
-
-  .productDetails h2{
-    text-align: center;
-    font-size: 30px;
-    color: #f1356d;
+  .productImage{
+    padding: 20px;
+    margin-left: 20px;
+    margin-top:20px;
+    display: flex;
   }
-
-  .productDetails p{
-    font-size: 24px;
-  }
-
-  .singleProductPhoto{
-    width: 820px;
-    height: 600px;
-    margin-left: 640px;
-  }
-  .singleProductDescription{
-    font-size: 24px;
-    margin-left: 200px;
-  }
-  .productDetails p{
-    margin-left: 200px;
+  .arangeDetails{
+    margin-left: 300px;
   }
   
-  .deleteButton{
-    background-color: rgba(0, 64, 148, 0.726);
-    border:none;
-    color: white;
-    padding: 20px 30px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-    .addButton{
-      background-color: #f1356d;
-    color: #fff;
-    border: 0;
-    padding: 8px;
-    border-radius: 8px;
-    }
-    

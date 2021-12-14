@@ -1,107 +1,13 @@
-.homeTitle{
-    padding: 10px 16px;
-    border-bottom: 1px solid #fafafa;
-    box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
-    background-color: burlywood;
-  }
-  .navbar {
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
-    border-bottom: 1 px solid #f2f2f2;
-  }
-  
-  .navbar h1{
-    color:blueviolet;
-  
-  }
-  
-  .navbar .links {
-    margin-left: auto;
-  }
-  
-  .navbar a{
-    margin-left: 16px;
+
+  .textStyle{
     text-decoration: none;
-    padding: 6px;
+    color: #f2f2f2;
+    padding: 40px;
+    display:flex;
   }
-  
-  .navbar a:hover{
-  color: #f1356d;
-  }
-
-  .homeButton{
-    background-color: rgb(8, 206, 173);
-    border: none;
-    color: white;
-    padding: 20px 30px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-
-  .homeButton:hover{
-    animation-name: example;
-    animation-duration: 100s;
-  }
-  .catalogueButton{
-    background-color: rgb(116, 58, 243);
-    border: none;
-    color: white;
-    padding: 20px 30px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  .catalogueButton:hover{
-    animation-name: example2;
-    animation-duration: 100s;
-  }
-
-  .addButton{
-    background-color: rgba(236, 175, 32, 0.726);
-    border:none;
-    color: white;
-    padding: 20px 30px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  .addButton:hover{
-    animation-name: example3;
-    animation-duration: 100s;
-  }
-
-  .cartButton{
-    background-color: rgba(0, 64, 148, 0.726);
-    border:none;
-    color: white;
-    padding: 20px 30px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  .cartButton:hover{
-    animation-name: example4;
-    animation-duration: 100s;
-  }
-
-  
-  @keyframes example {
-    0%   {background-color: rgb(8, 206, 173);}
-    2%  {background-color: rgb(224, 169, 16);}
-  }
-
-  @keyframes example2 {
-    0%   {background-color: rgb(116, 58, 243);}
-    2%  {background-color: rgb(19, 195, 240);}
-  }
-  
-  @keyframes example3 {
-    0%   {background-color: rgb(236, 175, 32, 0.726);}
-    2%  {background-color: rgb(26, 206, 122);}
-  }
-  @keyframes example4 {
-    0%   {background-color: rgba(0, 64, 148, 0.726);}
-    2%  {background-color: rgb(243, 0, 203);}
+  .buttonStyle{
+    text-decoration: none;
+    color: #f2f2f2;
   }
   
   
