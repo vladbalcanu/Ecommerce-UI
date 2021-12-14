@@ -16,39 +16,29 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import AddIcon from '@mui/icons-material/Add';
 import BasicRating from './rating';
-import { Link } from "react-router-dom";
 import styles from './productcard.module.css';
+import { Link } from "react-router-dom";
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import { useEffect, useState } from "react";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
-export default function RecipeReviewCard({product}) {
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+export default function ProductCard({product}) {
+  const [image,setImage]=useState("");
+  useEffect(()=>{
+    product.images.filter(image => image.display_order==0).map(image => setImage(image.image.large));
+  })
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width:350}}>
         <div className={styles.cardStyle}>
-    <Link to={`/catalogue/searchProducts/products/${product.id}`}>
+        <Link to={`/catalogue/searchProducts/products/${product.id}`} className={styles.textStyle}>
       <CardHeader
         title={product.title}
         producer={product.producer}
       />
       <CardMedia
         component="img"
-        height="194"
-        image={product.image}
+        height="240"
+        image={image}
         alt="Whatever"
       />
 
@@ -59,16 +49,19 @@ export default function RecipeReviewCard({product}) {
       </CardContent>
       </Link>
       </div>
+      <div className={styles.buttonStyles}>
+      
 
-      <CardActions disableSpacing>
+      <CardActions >
         
-        <IconButton aria-label="share">
+        <IconButton aria-label="Rating" sx={{mr:15}}>
           <BasicRating></BasicRating>
         </IconButton>
-        <IconButton aria-label="add to cart">
-          <AddIcon />
+        <IconButton sx={{fontSize:60}} aria-label="add to cart" color="success" size="large" >
+          <AddBoxIcon sx={{fontSize:50}} />
         </IconButton>
       </CardActions>
+      </div>
     </Card>
   );
 }

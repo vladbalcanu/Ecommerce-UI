@@ -1,0 +1,13 @@
+.cartPage{
+    display:flex;
+}
+.formStyle{
+    align-self:auto;
+    margin-right: 200px;
+    margin-top :150px;
+    padding: 5px;
+    /* //background-color: rgb(245, 245, 245); */
+    border: black;
+    border-radius: 1px;
+    box-shadow:black,5px;
+}
