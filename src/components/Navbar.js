@@ -12,29 +12,29 @@ import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { Badge } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { selectIsAuth } from '../store/auth/selectors';
-import { getCurrentUser } from '../store/auth/thunks';
+import { getCurrentUser, logout } from '../store/auth/thunks';
 import { useEffect } from 'react';
+import Button from '@mui/material/Button';
+import { alpha } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+
 export const Navbar = () => {
-
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const dispatch =useDispatch();
-  const isAuth =useSelector(selectIsAuth);
-  useEffect(()=>{
+  const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
+  const [open, setOpen] = React.useState(false);
+  useEffect(() => {
     dispatch(getCurrentUser());
-},[])
-
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+  }, [])
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -43,20 +43,19 @@ export const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  function logOut() {
+    dispatch(logout());
+    handleClose();
+  }
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpen(false);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
-      {/* <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? 'Logged in' : 'Logged out'}
-        />
-      </FormGroup> */}
 
       <AppBar position="static">
 
@@ -69,7 +68,7 @@ export const Navbar = () => {
               aria-haspopup="true"
               onClick={handleMenu}
               color="inherit"
-              sx={{mr:10}}
+              sx={{ mr: 10 }}
             >
               <MenuIcon>
               </MenuIcon>
@@ -88,8 +87,9 @@ export const Navbar = () => {
               }}
               open={Boolean(anchorEl)}
               onClose={handleClose}>
-              <MenuItem onClick={handleClose}>Sign in</MenuItem>
-              <MenuItem onClick={handleClose}>Sing up</MenuItem>
+
+              <Link to="/signin" className={styles.linkStyle}><MenuItem onClick={handleClose}>Sign in</MenuItem></Link>
+              <Link to="/register" className={styles.linkStyle}><MenuItem onClick={handleClose}>Sing up</MenuItem></Link>
             </Menu>
           </div>)
           }
@@ -101,11 +101,9 @@ export const Navbar = () => {
               aria-haspopup="true"
               onClick={handleMenu}
               color="inherit"
-              sx={{mr:10}}
+              sx={{ mr: 10 }}
             >
-              
               <AccountCircle>
-
               </AccountCircle>
             </IconButton>
             <Menu
@@ -123,7 +121,7 @@ export const Navbar = () => {
               open={Boolean(anchorEl)}
               onClose={handleClose}>
               <MenuItem onClick={handleClose}>My account</MenuItem>
-              <MenuItem onClick={handleClose}>Sing Out</MenuItem>
+              <MenuItem onClick={logOut}>Sing Out</MenuItem>
             </Menu>
           </div>))}
 
@@ -139,11 +137,54 @@ export const Navbar = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/" className={styles.textStyle}>User Account</Link>
           </Typography>
-          <Link to="/cart" className={styles.buttonStyle}><IconButton color="inherit" size="large">
+          {!isAuth && (<div><IconButton color="inherit"
+            size="large"
+            onClick={handleClickOpen}
+            type="button">
             <Badge badgeContent={5} color="error">
               <ShoppingBagIcon />
             </Badge>
-          </IconButton> </Link>
+          </IconButton>
+            <Dialog
+              open={open}
+              onClose={handleCloseDialog}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"You need to be logged in !"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  To see the cart or introduce items in it you need to be logged in
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions onClick={handleCloseDialog}>
+                <Link to="/signin" className={styles.buttonStyle}><Button variant="outlined" sx={{
+                  marginTop: 3,
+                  marginLeft: 1,
+                  boxShadow: 4,
+                  fontSize: 16,
+                  width: 150,
+                  backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
+                }}>Sign in</Button></Link>
+                <Link to="/register" className={styles.buttonStyle}><Button variant="outlined" sx={{
+                  marginTop: 3,
+                  marginLeft: 1,
+                  marginRight: 10,
+                  boxShadow: 4,
+                  fontSize: 16,
+                  width: 150,
+                  backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
+                }}>Register</Button></Link>
+              </DialogActions>
+            </Dialog></div>)
+          }
+          {isAuth && (<Link to="/cart" className={styles.buttonStyle}><IconButton color="inherit" size="large" >
+            <Badge badgeContent={5} color="error">
+              <ShoppingBagIcon />
+            </Badge>
+          </IconButton> </Link>)}
           <Link to="/" className={styles.buttonStyle}><IconButton color="inherit">
             <Badge badgeContent={5} color="error">
               <CircleNotificationsIcon></CircleNotificationsIcon>
