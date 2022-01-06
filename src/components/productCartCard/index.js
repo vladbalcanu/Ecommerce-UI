@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { alpha } from '@mui/material/styles';
+import {PriceTag} from '../productCard/index.new'
 
 export default function CartProductCard({product}) {
     function quantityUpdate(event){
@@ -22,28 +23,37 @@ export default function CartProductCard({product}) {
   const [image,setImage]=useState("");
   useEffect(()=>{
     product.images.filter(image => image.display_order==0).map(image => setImage(image.image.large));
-  })
+  }, [])
 
   return (
-    
+
     <Card sx={{ width:1000 ,marginTop:5,ml:2,boxShadow:5,display:"flex"}}>
 
       <Link to={`/catalogue/searchProducts/products/${product.id}`} className={styles.textStyle}>
-      <CardMedia sx={{display:"flex",
-      }}
-        component="img"
-        height="192"
-        image={image}
-        alt="Whatever"
-      />
+        {(product && product.images.length > 0)
+          ?
+          <CardMedia
+            component="img"
+            height="200"
+            width="200"
+            image={product.images.find(i => i.display_order === 0).image.medium}
+            alt={product.title}
+          />
+          :
+          <CardMedia
+            component="img"
+            height="200"
+            width="200"
+            image={'https://picsum.photos/200'}
+            alt={product.title}
+          />
+        }
        <CardHeader color="inherit"
         title={product.title}/>
 
       <CardContent>
-          <Typography color="green">
-            $300
-          </Typography> 
-       </CardContent>
+        <PriceTag price={product.price} discountPrice={product.discount_price} isDiscountable={product.is_discountable}/>
+      </CardContent>
        </Link>
       <div className={styles.quantityStyle}>
           <TextField sx={{backgroundColor:(theme)=>alpha(theme.palette.primary.contrastText, 0.6),
