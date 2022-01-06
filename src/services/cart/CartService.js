@@ -1,13 +1,19 @@
-import { api } from "../../api/client";
+import {api} from '../../api/client'
 
 
-export default class CartService{
-static async getCartItems(){
-    const {data}=await api.client.get('cart/items//')
+export default class CartService {
+  static async getCartItems({cart}) {
+    const {data} = await api.client.get(`cart/${cart.id}/items/`)
     return data
-}
-static async add(){
-    const {data}=await api.client.get('cart/items//')
+  }
+
+  static async addProductToCart({product, cart}) {
+    const {data} = await api.client.post('cart/items/', {cart: cart.id, product: product.id})
     return data
-}
+  }
+
+  static async getCart() {
+    const {data} = await api.client.get('cart/')
+    return data
+  }
 }

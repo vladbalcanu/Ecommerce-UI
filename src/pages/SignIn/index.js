@@ -11,7 +11,7 @@ import Box from '@mui/material/Box'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
-import {Link as RouterLink} from 'react-router-dom'
+import {Link as RouterLink, Navigate} from 'react-router-dom'
 import {login} from '../../store/auth/thunks'
 import {useDispatch, useSelector} from 'react-redux'
 import {selectIsAuth} from '../../store/auth/selectors'
@@ -35,6 +35,7 @@ const theme = createTheme()
 
 export default function Index() {
   const dispatch = useDispatch()
+
   const isAuth = useSelector(selectIsAuth)
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -46,10 +47,9 @@ export default function Index() {
     }
     dispatch(login(loginData))
   }
-
   return (
     <>
-      {isAuth ? <div>Already logged in</div>
+      {isAuth ? <Navigate to="/" />
         :
         <ThemeProvider theme={theme}>
           <Grid container component="main" sx={{height: '100vh'}}>
