@@ -80,7 +80,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const ProductsPage = () => {
-  const [searchText, setSearchText] = useState( "")
+  const [searchText, setSearchText] = useState("")
   const [category, setCategory] = useState("")
   const dispatch = useDispatch();
   const products = useSelector(selectProducts)
@@ -89,7 +89,7 @@ export const ProductsPage = () => {
     dispatch(getProducts());
     dispatch(getCategories());
   }, [dispatch])
- 
+
   function onChangeSearch(event) {
     setSearchText(event.target.value);
   }
@@ -123,8 +123,6 @@ export const ProductsPage = () => {
           method="get"
           onSubmit={handleSubmit}
         >
-
-
           <label>
             <Search>
               <SearchIconWrapper>
