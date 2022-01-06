@@ -1,15 +1,18 @@
-import {localStorageService} from '../../api/storage'
 import {api} from '../../api/client'
 
 export default class ProductsService {
-static async getProducts() {
-const {data} = await api.client.get('catalogue/product/');
-console.log(data);
-return data
-}
-static async searchProducts(search="",categoryId="") {
-    console.log(search);
-    const {data} = await api.client.get(`catalogue/product/?search=${search}&category=${categoryId}`);
+  static async getProducts() {
+    const {data} = await api.client.get('catalogue/product/')
     return data
-    }
+  }
+
+  static async searchProducts(search = '') {
+    const {data} = await api.client.get(`catalogue/product/?search=${search}`)
+    return data
+  }
+
+  static async getProductsByCategory(categoryId, priceMin = 0, priceMax = 100000) {
+    const {data} = await api.client(`catalogue/category/${categoryId}/products/?price_min=${priceMin}&price_max=${priceMax}`)
+    return data
+  }
 }

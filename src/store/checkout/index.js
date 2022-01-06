@@ -1,13 +1,14 @@
 import {createSlice} from '@reduxjs/toolkit'
 
+
 export const initialState = {
   isPending: false,
   isError: false,
-  products: []
+  order: null
 }
 
 export const index = createSlice({
-  name: 'catalogue',
+  name: 'checkout',
   initialState,
   reducers: {
     setIsPending: (state, action) => {
@@ -16,13 +17,14 @@ export const index = createSlice({
     setError: (state, action) => {
       state.isError = true
     },
-    setProducts: (state, action) => {
-      state.products = action.payload.products
+
+    setOrder: (state, action) => {
+      state.order = action.payload.order
     }
   }
 })
 
-export const {setIsPending, setError, setProducts} = index.actions
+export const {setIsPending, setError, setOrder} = index.actions
 
 
 export default index.reducer

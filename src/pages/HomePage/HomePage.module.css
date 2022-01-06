@@ -1,0 +1,14 @@
+.landingPageContainer {
+    height: 200vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.categoriesMenuContainer {
+    width: 25%;
+    height: 100vh;
+    margin: 50px;
+    position: sticky;
+    position: -webkit-sticky;
+    overflow: auto;
+}
