@@ -35,6 +35,7 @@ export const Navbar = () => {
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [])
+  console.log(isAuth);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);

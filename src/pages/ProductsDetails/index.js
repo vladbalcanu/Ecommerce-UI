@@ -18,6 +18,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import * as React from 'react';
 import { Link } from "react-router-dom";
+import { selectIsAuth } from "../../store/auth/selectors";
 
 
 const ProductsDetails = () => {
@@ -27,6 +28,7 @@ const ProductsDetails = () => {
     const error = useSelector(selectError)
     const isPending = useSelector(selectIsPending)
     const categories = useSelector(selectCategories);
+    const isAuth= useSelector(selectIsAuth)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCategories());
@@ -41,7 +43,9 @@ const ProductsDetails = () => {
       const handleCloseDialog = () => {
         setOpen(false);
       };
-
+    const handleAddToCart=()=>{
+      
+    }
     return (
 
         <div className={styles.productDetails}>
@@ -68,6 +72,7 @@ const ProductsDetails = () => {
                 <Typography>Producer: {product.producer}
                 </Typography>
                 </Box>
+                {!isAuth && 
                 <Box>
                 <Button variant="outlined" onClick={handleClickOpen} type="button" sx={{
                     display:"flex",
@@ -112,7 +117,20 @@ const ProductsDetails = () => {
                 }}>Register</Button></Link>
               </DialogActions>
             </Dialog>
-                </Box>
+                </Box>}
+                {isAuth && 
+                <Box>
+                <Button variant="outlined" onClick={handleAddToCart} type="button" sx={{
+                    display:"flex",
+                    marginLeft: 50,
+                    marginTop:10,
+                    boxShadow: 4,
+                    fontSize: 16,
+                    width: 300,
+                    backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
+                }}>Add to cart</Button>
+                </Box>}
+                
 
             </Box>
             </div>
