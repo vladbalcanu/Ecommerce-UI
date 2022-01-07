@@ -15,10 +15,11 @@ import {addProductToCart} from '../../store/cart/thunks'
 
 export default function ProductCard({product}) {
   const dispatch = useDispatch()
+  const quantity = 1;
 
 
   const handleAddProductToCart = () => {
-    dispatch(addProductToCart({product}))
+    dispatch(addProductToCart({product,quantity}))
   }
 
   return (
@@ -28,8 +29,9 @@ export default function ProductCard({product}) {
         <DiscountTag discountInPercents={Math.round((1 - product.discount_price / product.price) * 100)}/>
       </div>
       }
-      <NavLink to={`/catalogue/product/${1}`} style={{textDecoration: 'none'}}>
-        {(product && product.images.length > 0)
+      <NavLink to={`/catalogue/searchProducts/products/${product.id}`} style={{textDecoration: 'none'}}>
+        {
+        (product && product.images.length > 0)
           ?
           <CardMedia
             component="img"

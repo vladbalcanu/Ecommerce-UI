@@ -25,7 +25,6 @@ function App() {
     dispatch(getCurrentUser())
     dispatch(getCartForUser())
   }, [dispatch])
-
   return (
     <BrowserRouter>
       <Navbar/>
