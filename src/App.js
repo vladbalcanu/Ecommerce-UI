@@ -8,6 +8,7 @@ import {useDispatch} from 'react-redux'
 import {getCurrentUser} from './store/auth/thunks'
 import {ProductsPage} from './pages/ProductsPage'
 import Navbar from './components/Navbar/index.new'
+import Footer from './components/Footer/index.js'
 import ProductsDetails from './pages/ProductsDetails'
 import {Create} from './pages/AddProduct'
 import ProductImageList from './components/productImageList'
@@ -46,6 +47,7 @@ function App() {
 
         <Route element={<NotFoundPage/>}/>
       </Routes>
+      <Footer/>
     </BrowserRouter>
   )
 }
