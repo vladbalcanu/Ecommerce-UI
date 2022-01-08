@@ -15,39 +15,63 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import {getCartItems} from '../../store/cart/thunks'
 import {selectCart, selectCartItems} from '../../store/cart/selectors'
+import { selectIsAuth } from '../../store/auth/selectors'
 
 export const CartPage = () => {
   const dispatch = useDispatch()
+
   const cart = useSelector(selectCart)
   const cartItems = useSelector(selectCartItems)
-  const [country, setCountry] = useState('')
-  const handleCountryChange = (event) => {
-    setCountry(event.target.value)
-  }
-
+ 
   useEffect(() => {
     dispatch(getCartItems())
   }, [cart, dispatch])
+
+
+  function originalPrice(){
+    let t =0
+    console.log(t)
+    cartItems.map(item => {t=t+ parseInt(item.product.price)*parseInt(item.quantity)})
+    return t;
+  }
+  function discountedPrice(){
+    let t =0
+    console.log(t)
+    cartItems.map(item => {
+      if(item.product.is_discountable==true){
+      t= t + parseInt(item.product.discount_price)*parseInt(item.quantity)
+      }
+      else
+      {
+      t= t + parseInt(item.product.price)*parseInt(item.quantity)
+      }
+    })
+    return t;
+  }
+  let discountedPriceVar=discountedPrice();
+  let originalPriceVar= originalPrice();
+  useEffect(()=>{
+    discountedPriceVar=discountedPrice();
+    originalPriceVar= originalPrice();
+  },cartItems)
   return (
 
-    <div className={styles.cartPage}>
-      <div className={styles.productGrid}>
+        <Box sx={{display:'flex'}}>
         <Grid container spacing={5} columns={1} sx={{
           alignContent: 'left',
-          marginLeft: 10
+          marginLeft: 15
 
         }}>
 
           {cartItems.map(item => (
             <Grid item xs={4} key={item.id}>
-              <CartProductCard product={item.product}/>
+              <CartProductCard cartItem={item}/>
             </Grid>
           ))}
         </Grid>
-      </div>
       <Box sx={{
-        height: 900,
-        width: 1200,
+        height: 200,
+        width: 700,
         display: 'inline',
         marginRight: 30,
         marginTop: 15,
@@ -59,90 +83,11 @@ export const CartPage = () => {
         fontWeight: 'bold'
       }}>
         <Typography sx={{marginTop: 2, marginLeft: 2, fontSize: 20}}>
-          Total: $PRICE
+          Total: ${discountedPriceVar}
         </Typography>
-        <Typography sx={{marginTop: 5, marginLeft: 2, fontSize: 20}}>
-          Additional Comments :
+        <Typography sx={{marginTop: 2, marginLeft: 2, fontSize: 20}}>
+          Old Total: ${originalPriceVar}
         </Typography>
-        <TextField sx={{
-          marginTop: 2.5,
-          marginLeft: 3.75,
-          width: 300,
-          boxShadow: 4,
-          fontSize: 20,
-          backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
-        }}
-                   id="outlined-multiline-static"
-                   label="Comments"
-                   multiline
-                   rows={8}
-                   defaultValue=""
-        />
-        <TextField sx={{
-          marginTop: 3,
-          marginLeft: 3.75,
-          width: 300,
-          boxShadow: 4,
-          fontSize: 20,
-          backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
-        }}
-                   id="filled-basic"
-                   label="Vouchers"
-        />
-        <Button variant="outlined" sx={{
-          marginTop: 3,
-          marginLeft: 3.75,
-          boxShadow: 4,
-          fontSize: 16,
-          width: 300,
-          backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
-        }}>Apply Voucher</Button>
-        <Typography sx={{marginTop: 5, marginLeft: 2, fontSize: 20}}>
-          Shipping Details :
-        </Typography>
-        <FormControl variant="standard" sx={{
-          marginTop: 3,
-          marginLeft: 3.75,
-          width: 300,
-          boxShadow: 4,
-          fontSize: 20,
-          backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
-        }}>
-          <InputLabel id="demo-simple-select-standard-label">Country</InputLabel>
-          <Select
-            labelId="demo-simple-select-standard-label"
-            id="demo-simple-select-standard"
-            value={country}
-            onChange={handleCountryChange}
-            label="Country"
-          >
-            <MenuItem value={'Romania'}>Romania</MenuItem>
-            <MenuItem value={'Bulgaria'}>Bulgaria</MenuItem>
-            <MenuItem value={'Ukraine'}>Ukraine</MenuItem>
-          </Select>
-        </FormControl>
-        <TextField sx={{
-          marginTop: 3,
-          marginLeft: 3.75,
-          width: 300,
-          boxShadow: 4,
-          fontSize: 20,
-          backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
-        }}
-                   id="filled-basic"
-                   label="City/Town"
-        />
-        <TextField sx={{
-          marginTop: 3,
-          marginLeft: 3.75,
-          width: 300,
-          boxShadow: 4,
-          fontSize: 20,
-          backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
-        }}
-                   id="filled-basic"
-                   label="Zip Code"
-        />
         <Button variant="outlined" sx={{
           marginTop: 3,
           marginLeft: 3.75,
@@ -152,9 +97,8 @@ export const CartPage = () => {
           backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
         }}>Checkout Now</Button>
       </Box>
+      </Box>
 
-
-    </div>
 
 
   )

@@ -1,14 +1,16 @@
+.textStyle{
+  text-decoration: none;
+  color: #f2f2f2;
+  padding: 40px;
+  display:flex;
+}
+.buttonStyle{
+  text-decoration: none;
+  color: #f2f2f2;
+}
+.linkStyle{
+  text-decoration: none;
+  color: black;
+}
 
-  .textStyle{
-    text-decoration: none;
-    color: #f2f2f2;
-    padding: 40px;
-    display:flex;
-  }
-  .buttonStyle{
-    text-decoration: none;
-    color: #f2f2f2;
-  }
-  
-  
 
