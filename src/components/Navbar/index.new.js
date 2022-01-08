@@ -18,6 +18,14 @@ import {useDispatch, useSelector} from 'react-redux'
 import {selectIsAuth} from '../../store/auth/selectors'
 import {logout} from '../../store/auth/thunks'
 import {selectCartCount} from '../../store/cart/selectors'
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Button from '@mui/material/Button';
+import styles from './buttonStyles.module.css';
+import { Link } from "react-router-dom";
 
 const Search = styled('div')(({theme}) => ({
   position: 'relative',
@@ -65,8 +73,8 @@ export default function Navbar() {
   const cartCount = useSelector(selectCartCount)
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [searchValue, setSearchValue] = React.useState('')
+  const [open, setOpen] = React.useState(false);
   let navigate = useNavigate()
-
   const isMenuOpen = Boolean(anchorEl)
 
   const handleProfileMenuOpen = (event) => {
@@ -91,6 +99,14 @@ export default function Navbar() {
       navigate(`catalogue/search?search=${searchValue}`)
     }
   }
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpen(false);
+  };
+  
 
   const menuId = 'primary-search-account-menu'
   const renderMenu = (
@@ -152,7 +168,7 @@ export default function Navbar() {
           <Box sx={{flexGrow: 1}}/>
           <Box sx={{display: {xs: 'none', md: 'flex'}}}>
 
-            <NavLink to="/cart" style={{textDecoration: 'none', color: 'white'}}>
+            {isAuth && (<NavLink to="/cart" style={{textDecoration: 'none', color: 'white'}}>
               <IconButton
                 size="large"
                 aria-label="show 17 new notifications"
@@ -162,7 +178,49 @@ export default function Navbar() {
                   <ShoppingCartIcon/>
                 </Badge>
               </IconButton>
-            </NavLink>
+            </NavLink>)}
+            {!isAuth && (<div><IconButton color="inherit"
+            size="large"
+            onClick={handleClickOpen}
+            type="button">
+            <Badge badgeContent={cartCount} color="error">
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
+            <Dialog
+              open={open}
+              onClose={handleCloseDialog}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {"You need to be logged in !"}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  To see the cart or introduce items in it you need to be logged in
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions onClick={handleCloseDialog}>
+                <Link to="/signin" className={styles.buttonStyle}><Button variant="outlined" sx={{
+                  marginTop: 3,
+                  marginLeft: 1,
+                  boxShadow: 4,
+                  fontSize: 16,
+                  width: 150,
+                  backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
+                }}>Sign in</Button></Link>
+                <Link to="/register" className={styles.buttonStyle}><Button variant="outlined" sx={{
+                  marginTop: 3,
+                  marginLeft: 1,
+                  marginRight: 10,
+                  boxShadow: 4,
+                  fontSize: 16,
+                  width: 150,
+                  backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
+                }}>Register</Button></Link>
+              </DialogActions>
+            </Dialog></div>)}
 
             {isAuth ?
               <IconButton

@@ -12,13 +12,25 @@ import TextField from '@mui/material/TextField';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { alpha } from '@mui/material/styles';
 import {PriceTag} from '../productCard/index.new'
+import { useDispatch } from 'react-redux';
+import { deleteItemFromCart, updateItemFromCart } from '../../store/cart/thunks';
 
-export default function CartProductCard({product}) {
+export default function CartProductCard({cartItem}) {
+  
+  const dispatch= useDispatch();
+  console.log("PRODUCT CART CARD QUANTITY")
+  console.log(cartItem.quantity)
     function quantityUpdate(event){
-        console.log(event.target.value)
+        let newCartItem = {... cartItem};
+        newCartItem.quantity = event.target.value;
+        console.log("FUNCTION")
+        console.log(newCartItem.quantity)
+        dispatch(updateItemFromCart({newCartItem}))
     }
+    const product = cartItem.product
     const handleDelete = () => {
-        console.log('You clicked the delete icon.');
+      console.log(cartItem.id)
+      dispatch(deleteItemFromCart({cartItem}))
       };
   const [image,setImage]=useState("");
   useEffect(()=>{
@@ -64,7 +76,7 @@ export default function CartProductCard({product}) {
           id="outlined-number"
           label="Quantity"
           type="number"
-          defaultValue={1}
+          defaultValue={cartItem.quantity}
           variant="filled"
           color='primary'
           onChange={quantityUpdate}
