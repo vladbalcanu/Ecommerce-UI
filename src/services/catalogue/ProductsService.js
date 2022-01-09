@@ -11,7 +11,7 @@ export default class ProductsService {
     return data
   }
 
-  static async getProductsByCategory(categoryId, priceMin = 0, priceMax = 100000) {
+  static async getProductsByCategory(categoryId, priceMin, priceMax) {
     const {data} = await api.client(`catalogue/category/${categoryId}/products/?price_min=${priceMin}&price_max=${priceMax}`)
     return data
   }

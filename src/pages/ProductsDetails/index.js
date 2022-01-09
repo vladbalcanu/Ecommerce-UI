@@ -5,7 +5,7 @@ import { selectError, selectIsPending, selectProduct } from "../../store/product
 import styles from './ProductPage.module.css';
 import { getProduct } from "../../store/product/thunks";
 import ProductImageList from "../../components/productImageList";
-import { IconButton, Typography } from "@mui/material";
+import { CardContent, IconButton, Typography } from "@mui/material";
 import { selectCategories } from "../../store/categories/selectors";
 import { getCategories } from "../../store/categories/thunks";
 import Box from '@mui/material/Box';
@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 import { selectIsAuth } from "../../store/auth/selectors";
 import { addProductToCart } from "../../store/cart/thunks";
 import TextField from '@mui/material/TextField';
+import { PriceTag } from "../../components/productCard/index.new";
 
 
 const ProductsDetails = () => {
@@ -68,11 +69,12 @@ const ProductsDetails = () => {
             <ProductImageList imageList={product.images}>
             </ProductImageList>
           </Box>
-          <Box sx={{height:400,width:1400, display: "flex", marginTop: 10, marginLeft: 15, borderRadius: 5, backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.2) }}>
-            <Box sx={{ marginLeft: 10 ,display:"flow"}}>
+          <Box sx={{ height: 400, width: 1800, display: "flex", marginTop: 10, marginLeft: 15, borderRadius: 5, backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.2) }}>
+            <Box sx={{ marginLeft: 10, display: "flow" }}>
               <h2>Title: {product.title}</h2>
-              <Typography>Price: ${product.price}
-              </Typography>
+              <CardContent>
+                <PriceTag price={product.price} discountPrice={product.discount_price} isDiscountable={product.is_discountable} />
+              </CardContent>
               {categories.filter(category => category.id == product.category).map(category => (
                 <Typography>Category: {category.name}</Typography>
               ))}
@@ -81,7 +83,7 @@ const ProductsDetails = () => {
               <TextField sx={{
                 backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6),
                 position: "absolute", float: "right",
-                marginTop:5
+                marginTop: 5
               }}
                 id="outlined-number"
                 label="Quantity"

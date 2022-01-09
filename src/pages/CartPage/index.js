@@ -16,6 +16,7 @@ import Select from '@mui/material/Select'
 import {getCartItems} from '../../store/cart/thunks'
 import {selectCart, selectCartItems} from '../../store/cart/selectors'
 import { selectIsAuth } from '../../store/auth/selectors'
+import {NavLink, useNavigate} from 'react-router-dom'
 
 export const CartPage = () => {
   const dispatch = useDispatch()
@@ -88,14 +89,15 @@ export const CartPage = () => {
         <Typography sx={{marginTop: 2, marginLeft: 2, fontSize: 20}}>
           Old Total: ${originalPriceVar}
         </Typography>
-        <Button variant="outlined" sx={{
+       <NavLink to={'/checkout'} style={{textDecoration: 'none', color: 'white'}}>
+          <Button variant="outlined" sx={{
           marginTop: 3,
           marginLeft: 3.75,
           boxShadow: 4,
           fontSize: 16,
           width: 300,
           backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
-        }}>Checkout Now</Button>
+        }}>Checkout Now</Button></NavLink>
       </Box>
       </Box>
 

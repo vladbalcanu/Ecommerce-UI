@@ -5,11 +5,15 @@ import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import {CardContent} from '@mui/material'
 import Divider from '@mui/material/Divider'
+import { useDispatch } from 'react-redux'
+import { getProductsByCategory } from '../../store/catalogue/thunks'
 
 export default function FiltersMenu({categoryId}) {
   const [value, setValue] = React.useState([0, 10000])
+  const dispatch = useDispatch();
   const handlePriceRangeChange = (event, newValue) => {
     setValue(newValue)
+    console.log(value)
   }
 
   return (

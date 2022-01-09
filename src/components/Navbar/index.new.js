@@ -183,7 +183,7 @@ export default function Navbar() {
             size="large"
             onClick={handleClickOpen}
             type="button">
-            <Badge badgeContent={cartCount} color="error">
+            <Badge badgeContent="0" color="error">
               <ShoppingCartIcon />
             </Badge>
           </IconButton>
