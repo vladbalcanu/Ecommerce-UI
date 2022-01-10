@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
-#root{
+#root {
     background-color: #F5F5F5;
+}
+
+
+.pagesContainer {
+    min-height: 100vh;
 }

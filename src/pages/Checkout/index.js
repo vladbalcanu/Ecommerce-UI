@@ -1,4 +1,5 @@
 import * as React from 'react'
+import {useEffect} from 'react'
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -14,11 +15,14 @@ import PaymentForm from './CardForm'
 import Review from './Review'
 import {Elements, useStripe} from '@stripe/react-stripe-js'
 import {stripePromise} from '../../services/checkout/StripeService'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {confirmCardPayment} from '../../store/checkout/thunks'
+import {selectCart} from '../../store/cart/selectors'
+import {selectOrderComplete} from '../../store/checkout/selectors'
+import {useNavigate} from 'react-router-dom'
 
 
-const steps = ['Shipping address', 'Payment details', 'Review your order']
+const steps = ['Shipping address', 'Payment']
 
 const theme = createTheme()
 
@@ -37,7 +41,9 @@ export function CheckoutMultiStep() {
   const [cardElement, setCardElement] = React.useState(null)
   const [shippingAddress, setShippingAddress] = React.useState(null)
   const [error, setError] = React.useState(false)
+  const cart = useSelector(selectCart)
   const stripe = useStripe()
+  const navigate = useNavigate()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -45,10 +51,13 @@ export function CheckoutMultiStep() {
         stripe,
         paymentMethod: {card: cardElement},
         shippingAddress,
-        billingAddress: shippingAddress
+        billingAddress: shippingAddress,
+        cart: cart
       })
     )
+    navigate('/profile')
   }
+
 
   const handleNext = () => {
     setActiveStep(activeStep + 1)
@@ -105,11 +114,16 @@ export function CheckoutMultiStep() {
                              handleShippingAddress={handleShippingAddress}
                 />}
                 {activeStep === 1 &&
-                <PaymentForm handleCardElement={handleCardElement}
-                             handleError={handleError}
-                />
+                <Box>
+                  <Box sx={{mb: '20px'}}>
+                    <PaymentForm handleCardElement={handleCardElement}
+                                 handleError={handleError}/>
+                  </Box>
+
+                  <Review shippingAddress={shippingAddress}/>
+                </Box>
                 }
-                {activeStep === 2 && <Review/>}
+
 
                 <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
                   {activeStep !== 0 && (
@@ -118,7 +132,7 @@ export function CheckoutMultiStep() {
                     </Button>
                   )}
 
-                  {activeStep === steps.length - 1 ?
+                  {activeStep === 1 ?
                     <Button
                       variant="contained"
                       onClick={handleSubmit}
@@ -131,7 +145,7 @@ export function CheckoutMultiStep() {
                       variant="contained"
                       onClick={handleNext}
                       sx={{mt: 3, ml: 1}}
-                      disabled={error}
+                      disabled={error && !shippingAddress}
                     >
                       Next
                     </Button>}

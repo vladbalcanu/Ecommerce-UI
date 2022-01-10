@@ -13,19 +13,20 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import LoginIcon from '@mui/icons-material/Login'
 import SearchIcon from '@mui/icons-material/Search'
 import AccountCircle from '@mui/icons-material/AccountCircle'
-import {NavLink, useNavigate} from 'react-router-dom'
+import {Link, NavLink, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {selectIsAuth} from '../../store/auth/selectors'
 import {logout} from '../../store/auth/thunks'
 import {selectCartCount} from '../../store/cart/selectors'
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
-import styles from './buttonStyles.module.css';
-import { Link } from "react-router-dom";
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+import Button from '@mui/material/Button'
+import styles from './buttonStyles.module.css'
+import CategoriesMenu from '../CategoriesMenu'
+import GridViewIcon from '@mui/icons-material/GridView';
 
 const Search = styled('div')(({theme}) => ({
   position: 'relative',
@@ -73,7 +74,8 @@ export default function Navbar() {
   const cartCount = useSelector(selectCartCount)
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [searchValue, setSearchValue] = React.useState('')
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false)
+  const [openCategories, setOpenCategories] = React.useState(false)
   let navigate = useNavigate()
   const isMenuOpen = Boolean(anchorEl)
 
@@ -100,13 +102,21 @@ export default function Navbar() {
     }
   }
   const handleClickOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleCloseDialog = () => {
-    setOpen(false);
-  };
-  
+    setOpen(false)
+  }
+
+  const handleCategoriesOpen = () => {
+    setOpenCategories(!openCategories)
+  }
+
+  const handleAccountClick = () => {
+    navigate('/profile')
+  }
+
 
   const menuId = 'primary-search-account-menu'
   const renderMenu = (
@@ -128,7 +138,7 @@ export default function Navbar() {
     >
       {isAuth &&
       <div>
-        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+        <MenuItem onClick={handleAccountClick}>My account</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </div>
       }
@@ -138,7 +148,7 @@ export default function Navbar() {
 
   return (
     <Box sx={{flexGrow: 1}}>
-      <AppBar position="sticky" color={'primary'}>
+      <AppBar position="sticky" color={'primary'} sx={{boxShadow: 'none'}}>
         <Toolbar>
           <NavLink to={'/'} style={{textDecoration: 'none', color: 'white'}}>
             <Typography
@@ -180,47 +190,47 @@ export default function Navbar() {
               </IconButton>
             </NavLink>)}
             {!isAuth && (<div><IconButton color="inherit"
-            size="large"
-            onClick={handleClickOpen}
-            type="button">
-            <Badge badgeContent={cartCount} color="error">
-              <ShoppingCartIcon />
-            </Badge>
-          </IconButton>
-            <Dialog
-              open={open}
-              onClose={handleCloseDialog}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                {"You need to be logged in !"}
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  To see the cart or introduce items in it you need to be logged in
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions onClick={handleCloseDialog}>
-                <Link to="/signin" className={styles.buttonStyle}><Button variant="outlined" sx={{
-                  marginTop: 3,
-                  marginLeft: 1,
-                  boxShadow: 4,
-                  fontSize: 16,
-                  width: 150,
-                  backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
-                }}>Sign in</Button></Link>
-                <Link to="/register" className={styles.buttonStyle}><Button variant="outlined" sx={{
-                  marginTop: 3,
-                  marginLeft: 1,
-                  marginRight: 10,
-                  boxShadow: 4,
-                  fontSize: 16,
-                  width: 150,
-                  backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
-                }}>Register</Button></Link>
-              </DialogActions>
-            </Dialog></div>)}
+                                          size="large"
+                                          onClick={handleClickOpen}
+                                          type="button">
+              <Badge badgeContent={cartCount} color="error">
+                <ShoppingCartIcon/>
+              </Badge>
+            </IconButton>
+              <Dialog
+                open={open}
+                onClose={handleCloseDialog}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {'You need to be logged in !'}
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    To see the cart or introduce items in it you need to be logged in
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions onClick={handleCloseDialog}>
+                  <Link to="/signin" className={styles.buttonStyle}><Button variant="outlined" sx={{
+                    marginTop: 3,
+                    marginLeft: 1,
+                    boxShadow: 4,
+                    fontSize: 16,
+                    width: 150,
+                    backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
+                  }}>Sign in</Button></Link>
+                  <Link to="/register" className={styles.buttonStyle}><Button variant="outlined" sx={{
+                    marginTop: 3,
+                    marginLeft: 1,
+                    marginRight: 10,
+                    boxShadow: 4,
+                    fontSize: 16,
+                    width: 150,
+                    backgroundColor: (theme) => alpha(theme.palette.primary.contrastText, 0.6)
+                  }}>Register</Button></Link>
+                </DialogActions>
+              </Dialog></div>)}
 
             {isAuth ?
               <IconButton
@@ -252,6 +262,33 @@ export default function Navbar() {
         </Toolbar>
       </AppBar>
       {renderMenu}
+
+      <AppBar position="sticky" sx={{boxShadow: 'none'}}>
+        <Toolbar>
+          <Button
+            variant={'primary'}
+            onClick={handleCategoriesOpen}
+            startIcon={<GridViewIcon />}
+          >
+            Categories
+          </Button>
+
+        </Toolbar>
+      </AppBar>
+      {openCategories &&
+      <Toolbar sx={{position: 'absolute', mt: '5px'}}>
+        <Box sx={{
+          backgroundColor: 'white',
+          color: 'black',
+          width: '200px',
+          boxShadow: '0 0 2px #1976d2',
+          borderRadius: '5px'
+        }}
+        >
+          <CategoriesMenu/>
+        </Box>
+      </Toolbar>
+      }
     </Box>
   )
 }

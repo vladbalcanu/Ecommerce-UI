@@ -19,3 +19,9 @@ export const selectIsPending = createSelector(
   [selectDomain],
   state => state.isPending
 )
+
+
+export const selectOrderComplete = createSelector(
+  [selectDomain],
+  state => state.orderComplete
+)

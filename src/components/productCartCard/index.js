@@ -16,7 +16,7 @@ import { useDispatch } from 'react-redux';
 import { deleteItemFromCart, updateItemFromCart } from '../../store/cart/thunks';
 
 export default function CartProductCard({cartItem}) {
-  
+
   const dispatch= useDispatch();
   console.log("PRODUCT CART CARD QUANTITY")
   console.log(cartItem.quantity)
@@ -39,7 +39,7 @@ export default function CartProductCard({cartItem}) {
 
   return (
 
-    <Card sx={{ width:1000 ,marginTop:5,ml:2,boxShadow:5,display:"flex"}}>
+    <Card sx={{marginTop:5,ml:2,boxShadow:5,display:"flex"}}>
 
       <Link to={`/catalogue/searchProducts/products/${product.id}`} className={styles.textStyle}>
         {(product && product.images.length > 0)

@@ -50,7 +50,7 @@ export default function AddressForm({shippingAddress, handleShippingAddress}) {
           <TextField
             required
             id="address1"
-            name="address1"
+            name="street"
             label="Address line 1"
             fullWidth
             autoComplete="shipping address-line1"
@@ -84,7 +84,7 @@ export default function AddressForm({shippingAddress, handleShippingAddress}) {
           <TextField
             required
             id="zip"
-            name="zip"
+            name="postal_code"
             label="Zip / Postal code"
             fullWidth
             autoComplete="shipping postal-code"

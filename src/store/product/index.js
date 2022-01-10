@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit"
 export const initialState={
     isPending:false,
     isError:false,
-    product:[]
+    product:[],
+    reviews: []
 }
 export const index=createSlice({
     name:"product",
@@ -14,15 +15,18 @@ export const index=createSlice({
         },
         setError:(state,action)=>{
           state.isError=true
-          
+
         },
         setProduct:(state,action)=>{
           state.product=action.payload.product
+        },
+        setReviews: (state, action) => {
+            state.reviews = action.payload.reviews
         }
     }
 })
 
-export const {setIsPending,setError,setProduct} = index.actions
+export const {setIsPending,setError,setProduct, setReviews} = index.actions
 
 
 export default index.reducer

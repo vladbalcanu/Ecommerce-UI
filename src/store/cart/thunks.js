@@ -7,6 +7,7 @@ export const getCartForUser = () => async (dispatch) => {
   try {
     const cart = await CartService.getCart()
     dispatch(setCartData({cart}))
+    await dispatch(getCartItems())
   } catch (error) {
     dispatch(setError())
   } finally {
@@ -15,11 +16,11 @@ export const getCartForUser = () => async (dispatch) => {
 }
 
 
-export const addProductToCart = ({product,quantity}) => async (dispatch, getState) => {
+export const addProductToCart = ({product, quantity}) => async (dispatch, getState) => {
   dispatch(setIsPending(true))
   try {
     const cart = getState().cart?.cart
-    await CartService.addProductToCart({product, cart,quantity})
+    await CartService.addProductToCart({product, cart, quantity})
     dispatch(getCartForUser())
   } catch (error) {
     dispatch(setError())
@@ -41,7 +42,7 @@ export const getCartItems = () => async (dispatch, getState) => {
   }
 }
 
-export const deleteItemFromCart = ({cartItem}) => async (dispatch,getState) => {
+export const deleteItemFromCart = ({cartItem}) => async (dispatch, getState) => {
   dispatch(setIsPending(true))
   try {
     await CartService.deleteCartItem({cartItem})
@@ -54,24 +55,24 @@ export const deleteItemFromCart = ({cartItem}) => async (dispatch,getState) => {
   } finally {
     dispatch(setIsPending(false))
   }
-  
+
 }
-export const updateItemFromCart = ({newCartItem}) => async (dispatch,getState) => {
+export const updateItemFromCart = ({newCartItem}) => async (dispatch, getState) => {
   dispatch(setIsPending(true))
   try {
-    console.log("THUNK")
+    console.log('THUNK')
     console.log(newCartItem)
     const cart = getState().cart?.cart
-    await CartService.updateCartItem({newCartItem,cart})
-   
+    await CartService.updateCartItem({newCartItem, cart})
+
   } catch (error) {
     dispatch(setError())
   } finally {
     dispatch(setIsPending(false))
     const cart = getState().cart?.cart
     const data = await CartService.getCartItems({cart})
-    dispatch(getCartForUser())  
+    dispatch(getCartForUser())
     dispatch(setItems({items: data.results}))
-    console.log("AICI ");
+    console.log('AICI ')
   }
 }

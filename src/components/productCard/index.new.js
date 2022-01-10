@@ -35,8 +35,8 @@ export default function ProductCard({product}) {
           ?
           <CardMedia
             component="img"
-            height="200"
-            width="200"
+            height="400"
+            width="400"
             image={product.images.find(i => i.display_order === 0).image.medium}
             alt={product.title}
           />

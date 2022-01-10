@@ -17,7 +17,6 @@ export default function StripeCardForm({handleCardElement, handleError}) {
 
   const handleChange = () => {
     handleCardElement(elements.getElement(CardElement))
-
   }
 
   return (

@@ -9,9 +9,9 @@ export default class CheckoutService {
 
   static async placeOrder({billingAddress, shippingAddress, cart}) {
     const {data} = await api.client.post('order/', {
-      billing_address: billingAddress,
-      shipping_address: shippingAddress,
-      cart
+      billing_address: {...billingAddress, type: 'Billing'},
+      shipping_address: {...shippingAddress, type: 'Shipping'},
+      cart: cart.id,
     })
     return data
   }

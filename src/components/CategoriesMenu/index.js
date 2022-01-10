@@ -9,7 +9,7 @@ import Collapse from '@mui/material/Collapse'
 import Divider from '@mui/material/Divider'
 import List from '@mui/material/List'
 import {getCategories} from '../../store/categories/thunks'
-import {Navigate} from 'react-router-dom'
+import {Navigate, useNavigate} from 'react-router-dom'
 
 export default function CategoriesMenu() {
   const dispatch = useDispatch()
@@ -35,9 +35,12 @@ export default function CategoriesMenu() {
 const CategoriesMenuItem = ({category, padding}) => {
   const isExpandable = category && category.children.length > 0
   const [open, setOpen] = React.useState(false)
-  const [redirect, setRedirect] = React.useState(false)
   const {name, children} = category
+  const navigate = useNavigate()
 
+  const navigateTo = () => {
+    navigate(`/catalogue/category/${category.id}/`)
+  }
 
   function handleClick() {
     setOpen(!open)
@@ -45,7 +48,7 @@ const CategoriesMenuItem = ({category, padding}) => {
 
   const MenuItemRoot = (
     <ListItem style={{paddingLeft: padding, cursor: 'pointer'}}>
-      <ListItemText button primary={name} onClick={() => setRedirect(true)}/>
+      <ListItemText button primary={name} onClick={navigateTo}/>
       {isExpandable && !open && <ExpandMoreIcon onClick={handleClick}/>}
       {isExpandable && open && <ExpandLessIcon onClick={handleClick}/>}
     </ListItem>
@@ -64,7 +67,6 @@ const CategoriesMenuItem = ({category, padding}) => {
 
   return (
     <>
-      {redirect && <Navigate to={`catalogue/category/${category.id}/`}/>}
       {MenuItemRoot}
       {MenuItemChildren}
     </>

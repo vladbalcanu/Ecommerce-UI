@@ -4,15 +4,16 @@ import StripeService from '../../services/checkout/StripeService'
 import {getCartForUser} from '../cart/thunks'
 
 
-export const confirmCardPayment = ({stripe, paymentMethod, shippingAddress, billingAddress}) => async (dispatch) => {
+export const confirmCardPayment = ({stripe, paymentMethod, shippingAddress, billingAddress, cart}) => async (dispatch) => {
   dispatch(setIsPending(true))
   try {
     const {client_secret: clientSecret} = await CheckoutService.getClientSecret()
     const data = await StripeService.confirmCardPayment(stripe, clientSecret, paymentMethod)
     if (data.error) {
+      console.log(data.error)
       dispatch(setError())
     }
-    const order = await CheckoutService.placeOrder({billingAddress, shippingAddress})
+    const order = await CheckoutService.placeOrder({billingAddress, shippingAddress, cart})
     dispatch(setOrder({order}))
     dispatch(getCartForUser())
   } catch (error) {
